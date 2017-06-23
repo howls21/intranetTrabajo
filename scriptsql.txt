@@ -1,0 +1,224 @@
+-- phpMyAdmin SQL Dump
+-- version 4.6.6
+-- https://www.phpmyadmin.net/
+--
+-- Servidor: localhost
+-- Tiempo de generación: 21-06-2017 a las 23:54:19
+-- Versión del servidor: 5.7.17-log
+-- Versión de PHP: 5.6.30
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+--
+-- Base de datos: `crm`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `estado`
+--
+
+CREATE TABLE `estado` (
+  `id_estado` int(11) NOT NULL,
+  `rut` varchar(12) NOT NULL,
+  `id_obra` int(11) NOT NULL,
+  `estado` varchar(45) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `estado`
+--
+
+INSERT INTO `estado` (`id_estado`, `rut`, `id_obra`, `estado`) VALUES
+(1, '12.123.113-1', 1, 'trabajando'),
+(2, '20.456.345-4', 1, 'trabajando'),
+(3, '11.111.111-1', 2, 'trabajando');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `marcaciones`
+--
+
+CREATE TABLE `marcaciones` (
+  `id_marcacion` int(11) NOT NULL,
+  `entrada` time DEFAULT NULL,
+  `salida` time DEFAULT NULL,
+  `fecha` date DEFAULT NULL,
+  `tarjeta_nfc_id_tarjeta` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `marcaciones`
+--
+
+INSERT INTO `marcaciones` (`id_marcacion`, `entrada`, `salida`, `fecha`, `tarjeta_nfc_id_tarjeta`) VALUES
+(1, '00:00:00', NULL, '2017-06-14', '123456'),
+(2, '00:00:00', '00:00:00', '2017-06-15', '123456'),
+(6, '08:00:00', '18:00:00', '2017-06-07', '123'),
+(7, '08:00:00', '18:00:00', '2017-06-01', '1212'),
+(14, '01:06:33', '01:23:47', '2017-06-20', 'EB7AAE34'),
+(15, '01:22:15', NULL, '2017-06-20', '19169E35');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `obra`
+--
+
+CREATE TABLE `obra` (
+  `id_obra` int(11) NOT NULL,
+  `nombre_obra` varchar(45) NOT NULL,
+  `estado_id_estado` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `obra`
+--
+
+INSERT INTO `obra` (`id_obra`, `nombre_obra`, `estado_id_estado`) VALUES
+(1, 'talca', NULL),
+(2, 'linares', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `tarjeta_nfc`
+--
+
+CREATE TABLE `tarjeta_nfc` (
+  `id_tarjeta` varchar(20) NOT NULL,
+  `trabajador_rut` varchar(12) NOT NULL,
+  `id_obra` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `tarjeta_nfc`
+--
+
+INSERT INTO `tarjeta_nfc` (`id_tarjeta`, `trabajador_rut`, `id_obra`) VALUES
+('0', '12.123.113-1', 0),
+('1', '20.456.345-4', 1),
+('12', '20.456.345-4', 1),
+('1212', '20.456.345-4', 1),
+('123', '12.123.113-1', 1),
+('123456', '12.123.113-1', 1),
+('1234567', '12.123.113-1', 1),
+('12345678', '12.123.113-1', 1),
+('123456789', '12.123.113-1', 1),
+('123465', '12.123.113-1', 1),
+('19169E35', '11.111.111-1', 2),
+('EB7AAE34', '20.456.345-4', 2);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `trabajador`
+--
+
+CREATE TABLE `trabajador` (
+  `rut` varchar(12) NOT NULL,
+  `nombre` varchar(45) NOT NULL,
+  `apellido_paterno` varchar(45) NOT NULL,
+  `apellido_materno` varchar(45) NOT NULL,
+  `estado_id_estado` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `trabajador`
+--
+
+INSERT INTO `trabajador` (`rut`, `nombre`, `apellido_paterno`, `apellido_materno`, `estado_id_estado`) VALUES
+('11.111.111-1', 'MAURICIO', 'GARCIA', 'ROCO', NULL),
+('12.123.113-1', 'WIRSON', 'LANNISTER', 'LANNISTER', NULL),
+('20.456.345-4', 'ESTEBAN', 'DIDO', 'MALO', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `usuario`
+--
+
+CREATE TABLE `usuario` (
+  `id_usuario` int(11) NOT NULL,
+  `nombre_usuario` varchar(45) NOT NULL,
+  `clave` varchar(45) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `usuario`
+--
+
+INSERT INTO `usuario` (`id_usuario`, `nombre_usuario`, `clave`) VALUES
+(1, 'wirson', '1636jc');
+
+--
+-- Índices para tablas volcadas
+--
+
+--
+-- Indices de la tabla `estado`
+--
+ALTER TABLE `estado`
+  ADD PRIMARY KEY (`id_estado`);
+
+--
+-- Indices de la tabla `marcaciones`
+--
+ALTER TABLE `marcaciones`
+  ADD PRIMARY KEY (`id_marcacion`,`tarjeta_nfc_id_tarjeta`),
+  ADD KEY `fk_marcaciones_tarjeta_nfc1_idx` (`tarjeta_nfc_id_tarjeta`);
+
+--
+-- Indices de la tabla `obra`
+--
+ALTER TABLE `obra`
+  ADD PRIMARY KEY (`id_obra`),
+  ADD KEY `fk_obra_estado1_idx` (`estado_id_estado`);
+
+--
+-- Indices de la tabla `tarjeta_nfc`
+--
+ALTER TABLE `tarjeta_nfc`
+  ADD PRIMARY KEY (`id_tarjeta`,`trabajador_rut`),
+  ADD KEY `fk_tarjeta_nfc_trabajador1_idx` (`trabajador_rut`);
+
+--
+-- Indices de la tabla `trabajador`
+--
+ALTER TABLE `trabajador`
+  ADD PRIMARY KEY (`rut`),
+  ADD KEY `fk_trabajador_estado1_idx` (`estado_id_estado`);
+
+--
+-- Indices de la tabla `usuario`
+--
+ALTER TABLE `usuario`
+  ADD PRIMARY KEY (`id_usuario`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `estado`
+--
+ALTER TABLE `estado`
+  MODIFY `id_estado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT de la tabla `marcaciones`
+--
+ALTER TABLE `marcaciones`
+  MODIFY `id_marcacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+--
+-- AUTO_INCREMENT de la tabla `obra`
+--
+ALTER TABLE `obra`
+  MODIFY `id_obra` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT de la tabla `usuario`
+--
+ALTER TABLE `usuario`
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;

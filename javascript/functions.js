@@ -1,0 +1,422 @@
+$(document).ready(function () {
+    cookieCheck();
+    datePicker1();
+});
+function showModal(){
+    $('#modal-back').slideDown("slow");
+}
+function messageModal() {
+    dialog2 = $("#dialog").dialog({
+        autoOpen: false,
+        height: 200,
+        width: 300,
+        modal: true,
+        dialogClass: 'no-close success-dialog',
+        buttons: {
+            OK: function () {
+                dialog2.dialog("close");
+            }
+
+        },
+    });
+}
+
+function numberValidation() {
+    if ((event.keyCode < 48) || (event.keyCode > 57))
+        event.returnValue = false;
+}
+function yearValidation() {
+    var fecha = new Date();
+    var ano = fecha.getFullYear();
+    var year = $("#year").val();
+    if (year < 1985 || year > ano) {
+        alert("Año invalido! Ingreselo nuevamente!");
+        $("#year").val("");
+    }
+}
+function login() {
+    $.post(
+            base_url + "controller/conection",
+            {
+                user: $("#user").val(),
+                password: $("#password").val()
+            },
+    function () {
+        validate();
+    }
+    );
+}
+function validate() {
+    $.post(
+            base_url + "controller/validateSession",
+            {},
+            function (data) {
+                if (data.condition == true) {
+                    loadSystem();
+                } else {
+                    messageModal();
+                    dialog2.dialog("open");
+                }
+            }, 'json'
+            );
+}
+function loadSystem() {
+    $.post(
+            base_url + "controller/loadSystem",
+            {},
+            function (pagina) {
+                $("body").html(pagina);
+            }
+    );
+}
+function cookieCheck() {
+    $.post(
+            base_url + "controller/cookieCheck",
+            {},
+            function (data) {
+                if (data.condition) {
+                    loadSystem();
+                }
+            }, 'json'
+            );
+}
+function killCookie() {
+    $.post(
+            base_url + "controller/killCookie",
+            {},
+            function () {
+                loadSystem();
+            }
+    );
+    $("#user").val("");
+    $("#password").val("");
+}
+function loadFile() {
+    $.post(
+            base_url + "controller/loadFile",
+            {},
+            function (pagina, data) {
+                $("#container").html(pagina, data);
+            }
+    );
+}
+function searchFile() {
+    $.post(
+            base_url + "controller/searchFile",
+            {},
+            function (pagina, data) {
+                $("#container").html(pagina, data);
+            }
+    );
+    document.getElementById("btSearchFile").className = "btn btn-primary btn-lg btn-block";
+    document.getElementById("btAddObra").className = "btn btn-default btn-lg btn-block";
+    document.getElementById("btShowUploadObra").className = "btn btn-default btn-lg btn-block";
+    document.getElementById("btNewWorker").className = "btn btn-default btn-lg btn-block";
+    document.getElementById("btShowUploadWorker").className = "btn btn-default btn-lg btn-block";
+    document.getElementById("btShowSearchFileWorker").className = "btn btn-default btn-lg btn-block";
+    document.getElementById("btShowCreateCard").className = "btn btn-default btn-lg btn-block";
+    document.getElementById("btShowSearchReg").className = "btn btn-default btn-lg btn-block";
+}
+function addObra() {
+    $.post(
+            base_url + "controller/addObra",
+            {},
+            function (pagina, data) {
+                $("#container").html(pagina, data);
+            }
+    );
+    document.getElementById("btAddObra").className = "btn btn-primary btn-lg btn-block";
+    document.getElementById("btShowUploadObra").className = "btn btn-default btn-lg btn-block";
+    document.getElementById("btSearchFile").className = "btn btn-default btn-lg btn-block";
+    document.getElementById("btNewWorker").className = "btn btn-default btn-lg btn-block";
+    document.getElementById("btShowUploadWorker").className = "btn btn-default btn-lg btn-block";
+    document.getElementById("btShowSearchFileWorker").className = "btn btn-default btn-lg btn-block";
+    document.getElementById("btShowCreateCard").className = "btn btn-default btn-lg btn-block";
+    document.getElementById("btShowSearchReg").className = "btn btn-default btn-lg btn-block";
+}
+function saveObra() {
+    if ($("#nombreObra").val() == "") {
+        alert("Debe ingresar una obra!");
+    } else {
+        $.post(
+                base_url + "controller/saveObra",
+                {
+                    nombreObra: $("#nombreObra").val()
+
+                },
+        function (data) {
+            if (data.message == "existe") {
+                alert("La obra ya existe en el sistema!");
+                $("#nombreObra").val("");
+            } else if (data.message == "error") {
+                alert("Error al guardar!");
+                $("#nombreObra").val("");
+            } else if (data.message == "correcto") {
+                addObra();
+                alert("Obra agregada correctamente!");
+                $("#nombreObra").val("");
+            }
+        }, 'json'
+                );
+    }
+}
+function showUploadObra() {
+    $.post(
+            base_url + "controller/showUploadObra",
+            {},
+            function (pagina, data) {
+                $("#container").html(pagina, data);
+            }
+    );
+    document.getElementById("btShowUploadObra").className = "btn btn-primary btn-lg btn-block";
+    document.getElementById("btAddObra").className = "btn btn-default btn-lg btn-block";
+    document.getElementById("btSearchFile").className = "btn btn-default btn-lg btn-block";
+    document.getElementById("btNewWorker").className = "btn btn-default btn-lg btn-block";
+    document.getElementById("btShowUploadWorker").className = "btn btn-default btn-lg btn-block";
+    document.getElementById("btShowSearchFileWorker").className = "btn btn-default btn-lg btn-block";
+    document.getElementById("btShowCreateCard").className = "btn btn-default btn-lg btn-block";
+    document.getElementById("btShowSearchReg").className = "btn btn-default btn-lg btn-block";
+}
+function datePicker1() {
+    $("#datepicker").datepicker({
+        changeMonth: true,
+        changeYear: true,
+        minDate: '-80Y',
+        dateFormat: 'dd-mm-yy',
+        maxDate: "-18Y",
+        yearRange: "-80:+0"
+    });
+}
+function showFiles() {
+    if ($("#nameObra").val() == "" || $("#year").val() == "" || $("#cat").val() == "") {
+        alert("Debe rellenar los campos requeridos!");
+    } else {
+        $.post(
+                base_url + "controller/showFiles",
+                {
+                    obra: $("#nameObra").val(),
+                    year: $("#year").val(),
+                    cat: $("#cat").val()
+                },
+        function (pagina, data) {
+            $("#showFiles2").html(pagina, data);
+        }
+        );
+    }
+
+}
+function showFilesWorker() {
+    if ($("#obra").val() == "" || $("#rut").val() == "" ) {
+        alert("Debe rellenar los campos requeridos!");
+    } else {
+        $.post(
+                base_url + "controller/showFilesWorker",
+                {
+                    obra: $("#obra").val(),
+                    rut: $("#rut").val()
+                },
+        function (pagina, data) {
+            $("#showFiles2").html(pagina, data);
+        }
+        );
+    }
+
+}
+function showNewWorker() {
+    $.post(
+            base_url + "controller/showNewWorker",
+            {},
+            function (pagina) {
+                $("#container").html(pagina);
+            }
+    );
+    document.getElementById("btNewWorker").className = "btn btn-primary btn-lg btn-block";
+    document.getElementById("btAddObra").className = "btn btn-default btn-lg btn-block";
+    document.getElementById("btShowUploadObra").className = "btn btn-default btn-lg btn-block";
+    document.getElementById("btSearchFile").className = "btn btn-default btn-lg btn-block";
+    document.getElementById("btShowUploadWorker").className = "btn btn-default btn-lg btn-block";
+    document.getElementById("btShowSearchFileWorker").className = "btn btn-default btn-lg btn-block";
+    document.getElementById("btShowCreateCard").className = "btn btn-default btn-lg btn-block";
+    document.getElementById("btShowSearchReg").className = "btn btn-default btn-lg btn-block";
+
+}
+function showUploadWorker() {
+    $.post(
+            base_url + "controller/showUploadWorker",
+            {},
+            function (pagina, data, data2) {
+                $("#container").html(pagina, data);
+            }
+    );
+    document.getElementById("btShowUploadWorker").className = "btn btn-primary btn-lg btn-block";
+    document.getElementById("btNewWorker").className = "btn btn-default btn-lg btn-block";
+    document.getElementById("btAddObra").className = "btn btn-default btn-lg btn-block";
+    document.getElementById("btShowUploadObra").className = "btn btn-default btn-lg btn-block";
+    document.getElementById("btSearchFile").className = "btn btn-default btn-lg btn-block";
+    document.getElementById("btShowSearchFileWorker").className = "btn btn-default btn-lg btn-block";
+    document.getElementById("btShowCreateCard").className = "btn btn-default btn-lg btn-block";
+    document.getElementById("btShowSearchReg").className = "btn btn-default btn-lg btn-block";
+
+}
+function rutValidation() {
+    if ((event.keyCode == 107)) {
+        event.returnValue = true;
+    } else {
+        if ((event.keyCode < 48) || (event.keyCode > 57))
+            event.returnValue = false;
+    }
+}
+
+function searchState() {
+    $.post(
+            base_url + "controller/searchState",
+            {
+                worker: $("#worker").val(),
+                obra: $("#obra").val()
+            },
+    function (data) {
+        if (data.condition == false) {
+            document.getElementById('workerState').style.display = 'block';
+        }
+    }, 'json'
+            );
+}
+function showSearchFileWorker() {
+    $.post(
+            base_url + "controller/showSearchFileWorker",
+            {},
+            function (pagina, data) {
+                $("#container").html(pagina, data);
+            }
+    );
+    document.getElementById("btShowSearchFileWorker").className = "btn btn-primary btn-lg btn-block";
+    document.getElementById("btSearchFile").className = "btn btn-default btn-lg btn-block";
+    document.getElementById("btAddObra").className = "btn btn-default btn-lg btn-block";
+    document.getElementById("btShowUploadObra").className = "btn btn-default btn-lg btn-block";
+    document.getElementById("btNewWorker").className = "btn btn-default btn-lg btn-block";
+    document.getElementById("btShowUploadWorker").className = "btn btn-default btn-lg btn-block";
+    document.getElementById("btShowCreateCard").className = "btn btn-default btn-lg btn-block";
+    document.getElementById("btShowSearchReg").className = "btn btn-default btn-lg btn-block";
+    
+}
+function showCreateCard() {
+    $.post(
+            base_url + "controller/showCreateCard",
+            {},
+            function (pagina) {
+                $("#container").html(pagina);
+            }
+    );
+    document.getElementById("btShowCreateCard").className = "btn btn-primary btn-lg btn-block";
+    document.getElementById("btSearchFile").className = "btn btn-default btn-lg btn-block";
+    document.getElementById("btAddObra").className = "btn btn-default btn-lg btn-block";
+    document.getElementById("btShowUploadObra").className = "btn btn-default btn-lg btn-block";
+    document.getElementById("btNewWorker").className = "btn btn-default btn-lg btn-block";
+    document.getElementById("btShowUploadWorker").className = "btn btn-default btn-lg btn-block";
+    document.getElementById("btShowSearchFileWorker").className = "btn btn-default btn-lg btn-block";
+    document.getElementById("btShowSearchReg").className = "btn btn-default btn-lg btn-block";
+    
+    
+}
+function showSearchReg() {
+    $.post(
+            base_url + "controller/showSearchReg",
+            {},
+            function (pagina) {
+                $("#container").html(pagina);
+            }
+    );
+    document.getElementById("btShowSearchReg").className = "btn btn-primary btn-lg btn-block";
+    document.getElementById("btShowCreateCard").className = "btn btn-default btn-lg btn-block";
+    document.getElementById("btSearchFile").className = "btn btn-default btn-lg btn-block";
+    document.getElementById("btAddObra").className = "btn btn-default btn-lg btn-block";
+    document.getElementById("btShowUploadObra").className = "btn btn-default btn-lg btn-block";
+    document.getElementById("btNewWorker").className = "btn btn-default btn-lg btn-block";
+    document.getElementById("btShowUploadWorker").className = "btn btn-default btn-lg btn-block";
+    document.getElementById("btShowSearchFileWorker").className = "btn btn-default btn-lg btn-block";
+    
+    
+}
+function saveCard(){
+    if($("#slCC").val() !== "" && $("#idCC").val() !== "" && $("#idobra").val() !== ""){
+    $.post(
+            base_url + "controller/saveCard",
+            {
+                rut:$("#slCC").val(),
+                id:$("#idCC").val(),
+                obra:$("#idobra").val()
+            },
+            function (data) {
+                if(data.condition){
+                    alert("Agregada correctamente!");
+                    $("#slCC").val("");
+                    $("#idCC").val("");
+                    $("#idobra").val("");
+                }else{
+                    alert("Error!");
+                }
+                
+            }, 'json'
+    );}else{
+        alert("¡Ingrese los campos requeridos!");
+    }
+}
+function loadMonths(){
+    year = $("#slaño").val();
+    $.post(
+            base_url + "controller/loadMonths",
+            {
+              year:year  
+            },
+            function (pagina) {
+            $("#meses").html(pagina);
+            }
+    );
+}
+function loadAS(){
+    obra = $("#slobra").val();
+    year = $("#slaño").val();
+    month = $("#slmes").val();
+    $.post(
+            base_url + "controller/loadAS",
+            {
+              year:year ,
+              obra:obra,
+              month:month
+            },
+            function (pagina) {
+            $("#aCont").html(pagina);
+            }
+    );
+}
+function showDet(r){
+    rut = r;
+    obra = $("#slobra").val();
+    year = $("#slaño").val();
+    month = $("#slmes").val();
+    $.post(
+            base_url + "controller/showDet",
+            {
+              year:year ,
+              obra:obra,
+              month:month,
+              rut: rut
+            },
+            function (pagina) {
+            $("#aCont").html(pagina);
+            }
+    );
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
