@@ -1,5 +1,5 @@
 body{
-    background-color: white; 
+    background-color: white;
     background: url(../images/fondo1.jpg);
     width: 100%;
 }
@@ -59,7 +59,7 @@ body{
  }
  #table-obra{
      font-weight: bold;
-     
+
  }
  #workerState{
      display: none;
@@ -79,7 +79,7 @@ body{
  .ccCont{
      width: 20%;
      margin: auto;
-     
+
  }
   .sfCont{
      width: 20%;

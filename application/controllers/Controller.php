@@ -6,14 +6,14 @@ class Controller extends CI_Controller {
           $this->load->model("model");
           $this->load->model('BD_asistencia');
         }
-    
+
 	public function index()
 	{
             if($this->session->userdata("connected")){
               $data['user'] = $this->session->userdata("userName");
-              $this->load->view('header');  
+              $this->load->view('header');
               $this->load->view('system',$data);
-              
+
             }else{
               $this->load->view('header');
               $this->load->view('login');
@@ -23,13 +23,13 @@ class Controller extends CI_Controller {
             date_default_timezone_set('America/Santiago');
             $hora = getdate();
             print_r($hora['hours'].":".$hora['minutes'].":".$hora['seconds']);
-            
+
         }
-        function insertar_datos() 
+        function insertar_datos()
             {
             date_default_timezone_set('UTC');
                 $id_tarjeta_= $this->input->get('id');
-                
+
                 $estado = $this->BD_asistencia->marcar_hora($id_tarjeta_);
                 echo $estado;
                 //recorremos el array con los datos de e
@@ -51,13 +51,13 @@ class Controller extends CI_Controller {
                $datos = array(
                "user" => "",
                "connected" => false,
-               "idUser" => "");  
+               "idUser" => "");
             }
             $this->session->set_userdata($datos);
         }
         function validateSession(){
             if($this->session->userdata("connected")){
-              $condition = true;  
+              $condition = true;
             }else{
               $condition = false;
             }
@@ -74,7 +74,7 @@ class Controller extends CI_Controller {
                $this->load->view('header');
                $this->load->view('login');
             }
-            
+
         }
         function cookieCheck() {
           $condition=false;
@@ -84,7 +84,7 @@ class Controller extends CI_Controller {
           $data = array(
              'condition' => $condition
             );
-        
+
         echo json_encode($data);
        }
        function killCookie(){
@@ -123,9 +123,9 @@ class Controller extends CI_Controller {
              }  else {
                  print_r("Existe!");
              }
-            
+
            }
-           
+
       }
       function searchFile(){
           $query = $this->model->obraList();
@@ -167,7 +167,7 @@ class Controller extends CI_Controller {
                  base_url();
              }
              header("index.php");
-            
+
       }
       function saveObra(){
           $obra = $this->input->post("nombreObra");
@@ -202,7 +202,7 @@ class Controller extends CI_Controller {
                   );
               }
           }
-           
+
             echo json_encode($data);
       }
       function showUploadObra(){
@@ -226,7 +226,7 @@ class Controller extends CI_Controller {
            }
            else
            {
-             
+
              $temp = explode(".", $_FILES['archivo']['name']);
              $filename = $cat. " ".$month . " ". $year . " " . $obra . "." . end($temp);
               if(!file_exists($dir.$filename)){
@@ -235,7 +235,7 @@ class Controller extends CI_Controller {
               }else{
                   echo"<script type=\"text/javascript\">alert('Ya existe un archivo con ese nombre!'); window.location='/intranetTrabajo/index.php';</script>";
               }
-            
+
            }
           }else{
                echo"<script type=\"text/javascript\">alert('Debe llenar todos los campos!'); window.location='/intranetTrabajo/index.php';</script>";
@@ -250,7 +250,7 @@ class Controller extends CI_Controller {
               "year" => $year,
               "cat" => $cat
           );
-           
+
           $this->load->view('showFiles', $data);
       }
       function showFilesWorker(){
@@ -275,13 +275,19 @@ class Controller extends CI_Controller {
           $data['trabajador'] = $trabajador;
           $data['obra'] = $obra;
           }else{
-          $estado="";    
-          $data['estado'] = $estado;    
+          $estado="";
+          $data['estado'] = $estado;
           }
           $this->load->view('showFilesWorker', $data);
       }
       function showNewWorker(){
           $this->load->view('NewWorker');
+      }
+      function showEditWorker(){
+          $query = $this->model->workerList();
+          $data['cantidad'] = $query->num_rows();
+          $data['resultado'] = $query->result();
+          $this->load->view('editWorker',$data);
       }
       function saveNewWorker(){
           if($_POST['workerName'] != "" || $_POST['workerLastname1'] !="" || $_POST['workerLastname2'] !="" || $_POST['rutWorker'] !=""){
@@ -300,7 +306,7 @@ class Controller extends CI_Controller {
               echo"<script type=\"text/javascript\">alert('El trabajador ya existe '); window.location='/intranetTrabajo/index.php';</script>";
           }else{
              if($this->model->addWorker($data)){
-                  
+
                   $dir = "C:/subidas/trabajadores/$rutT/";
                   if (!file_exists($dir)) {
                     mkdir($dir, 0777, true);
@@ -313,9 +319,9 @@ class Controller extends CI_Controller {
           }else{
               echo"<script type=\"text/javascript\">alert('Debe llenar todos los campos requeridos! '); window.location='/intranetTrabajo/index.php';</script>";
           }
-           
-            
-          
+
+
+
       }
       function showUploadWorker(){
           $query = $this->model->obraList();
@@ -342,7 +348,7 @@ class Controller extends CI_Controller {
             );
             $this->model->addState($data);
          }
-          
+
           $dir = "C:/subidas/trabajadores/$worker/$obra/";
           if (!file_exists($dir)) {
            mkdir($dir, 0777, true);
@@ -358,18 +364,18 @@ class Controller extends CI_Controller {
                 }else{
                     echo"<script type=\"text/javascript\">alert('Ya existe un archivo con ese nombre! '); window.location='/intranetTrabajo/index.php';setTimeout ('showUploadWorker();', 500)</script>";
                 }
-                
-		
-		
+
+
+
 	         }
-                 
+
              }
           }  else {
               echo"<script type=\"text/javascript\">alert('Debe llenar todos los campos!'); window.location='/intranetTrabajo/index.php';</script>";
           }
       }
       function searchState(){
-          
+
            $worker = $this->input->post("worker");
            $obra   = $this->input->post("obra");
            $idObra;
@@ -378,19 +384,19 @@ class Controller extends CI_Controller {
             $idObra = $item->id_obra;
            }
            $query = $this->model->searchState($worker,$idObra);
-           
+
            foreach ($query->result() as $item){
-           
+
            }
            if($query->num_rows()==0){
             $condition = false;
            }else{
             $condition = true;
-           } 
+           }
            $data = array(
              'condition' => $condition
             );
-        
+
         echo json_encode($data);
       }
       function showCreateCard(){
@@ -475,8 +481,8 @@ class Controller extends CI_Controller {
           $data['regw']=$query;
           $this->load->view('workerdetail', $data);
       }
-      
-      
-      
-      
+
+
+
+
 }

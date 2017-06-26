@@ -1,8 +1,5 @@
 <?php
 class BD_asistencia extends CI_Model {
-
-
-
         public function marcar_hora($id_tarjeta_)
         {
 

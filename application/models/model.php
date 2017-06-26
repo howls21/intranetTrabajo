@@ -9,8 +9,8 @@ class Model extends CI_Model{
             return false;
         }else{
             return $query;
-                   
-        } 
+
+        }
     }
     function addWorker($data){
        return $this->db->insert('trabajador',$data);
@@ -26,14 +26,14 @@ class Model extends CI_Model{
     function obraList(){
        $this->db->select("*");
        $data = $this->db->get('obra');
-       return $data; 
+       return $data;
     }
     function elementList(){
        $query = $this->db->query("select * from cargo c join stock s where c.id_cargo = s.id_cargo");
        return $query;
     }
     function addElement($data){
-       $this->db->insert('cargo_trabajador',$data); 
+       $this->db->insert('cargo_trabajador',$data);
     }
     function newElement($data){
         return $this->db->insert('cargo',$data);
@@ -49,10 +49,10 @@ class Model extends CI_Model{
        }
        $nuevoStock = $oldStock - $cantidad;
        $new = array(
-        'stock' => $nuevoStock  
+        'stock' => $nuevoStock
        );
        $this->db->where('id_stock', $idStock);
-       $this->db->update('stock', $new); 
+       $this->db->update('stock', $new);
     }
     function workerSearch($rut){
         $query = $this->db->query("SELECT * FROM trabajador WHERE rut LIKE '$rut%'");
@@ -91,7 +91,7 @@ class Model extends CI_Model{
         if($m < 10){
             $mes = "0".$m;
         }  else {
-           $mes = $m; 
+           $mes = $m;
         }
         $query = $this->db->query("SELECT * FROM marcaciones m JOIN tarjeta_nfc t on m.tarjeta_nfc_id_tarjeta = t.id_tarjeta JOIN obra o ON t.id_obra = o.id_obra JOIN trabajador tr ON t.trabajador_rut = tr.rut WHERE m.fecha LIKE '$y-$mes%' AND o.id_obra = '$obra'");
          return $query;
@@ -128,15 +128,15 @@ class Model extends CI_Model{
      function stateList(){
        $this->db->select("*");
        $data = $this->db->get('estado');
-       return $data; 
+       return $data;
     }
     function searchState($worker,$idObra){
         $query = $this->db->query("select * from estado where rut = '$worker' and id_obra = $idObra;");
         return $query;
     }
     function addState($data){
-       $this->db->insert('estado',$data); 
+       $this->db->insert('estado',$data);
     }
-    
-    
+
+
 }
