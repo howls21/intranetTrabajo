@@ -1,4 +1,4 @@
-<div class="col-md-10">
+<div class="jumbotron">
 <div class="form-horizontal">
         <div class="form-group">
             <label class="col-md-4 control-label">Seleccione Obra</label>

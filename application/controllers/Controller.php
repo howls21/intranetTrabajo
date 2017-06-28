@@ -289,6 +289,20 @@ class Controller extends CI_Controller {
           $data['resultado'] = $query->result();
           $this->load->view('editWorker',$data);
       }
+      function deleteWorker(){
+        $rut = $this->input->post('rut');
+        $this->model->deleteWorker($rut);
+      }
+      function deleteObra(){
+        $id_obra = $this->input->post('id_obra');
+        $this->model->deleteObra($id_obra);
+      }
+      function showEditObra(){
+        $query = $this->model->obraList();
+        $data['cantidad'] = $query->num_rows();
+        $data['resultado'] = $query->result();
+        $this->load->view('editObra',$data);
+      }
       function saveNewWorker(){
           if($_POST['workerName'] != "" || $_POST['workerLastname1'] !="" || $_POST['workerLastname2'] !="" || $_POST['rutWorker'] !=""){
           $nombre = strtoupper(str_replace("ñ", "n", $_POST['workerName']));

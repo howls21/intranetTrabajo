@@ -1,10 +1,9 @@
-$(document).ready(function () {
+$(document).ready(
+    function () {
     cookieCheck();
     datePicker1();
-});
-function showModal(){
-    $('#modal-back').slideDown("slow");
-}
+}); 
+/*
 function messageModal() {
     dialog2 = $("#dialog").dialog({
         autoOpen: false,
@@ -20,7 +19,7 @@ function messageModal() {
         },
     });
 }
-
+*/
 function numberValidation() {
     if ((event.keyCode < 48) || (event.keyCode > 57))
         event.returnValue = false;
@@ -111,6 +110,7 @@ function searchFile() {
     document.getElementById("btSearchFile").className = "btn btn-primary btn-lg btn-block";
     document.getElementById("btAddObra").className = "btn btn-default btn-sm btn-block";
     document.getElementById("btShowUploadObra").className = "btn btn-default btn-sm btn-block";
+    document.getElementById("btShowEditObra").className = "btn btn-default btn-lg btn-block";
     document.getElementById("btShowEditWorker").className = "btn btn-default btn-sm btn-block";
     document.getElementById("btNewWorker").className = "btn btn-default btn-sm btn-block";
     document.getElementById("btShowUploadWorker").className = "btn btn-default btn-sm btn-block";
@@ -129,6 +129,7 @@ function addObra() {
     document.getElementById("btAddObra").className = "btn btn-primary btn-lg btn-block";
     document.getElementById("btShowUploadObra").className = "btn btn-default btn-sm btn-block";
     document.getElementById("btSearchFile").className = "btn btn-default btn-sm btn-block";
+    document.getElementById("btShowEditObra").className = "btn btn-default btn-lg btn-block";
     document.getElementById("btNewWorker").className = "btn btn-default btn-sm btn-block";
     document.getElementById("btShowEditWorker").className = "btn btn-default btn-sm btn-block";
     document.getElementById("btShowUploadWorker").className = "btn btn-default btn-sm btn-block";
@@ -173,6 +174,7 @@ function showUploadObra() {
     document.getElementById("btShowUploadObra").className = "btn btn-primary btn-lg btn-block";
     document.getElementById("btAddObra").className = "btn btn-default btn-sm btn-block";
     document.getElementById("btSearchFile").className = "btn btn-default btn-sm btn-block";
+    document.getElementById("btShowEditObra").className = "btn btn-default btn-lg btn-block";
     document.getElementById("btShowEditWorker").className = "btn btn-default btn-sm btn-block";
     document.getElementById("btNewWorker").className = "btn btn-default btn-sm btn-block";
     document.getElementById("btShowUploadWorker").className = "btn btn-default btn-sm btn-block";
@@ -235,6 +237,7 @@ function showNewWorker() {
     );
     document.getElementById("btNewWorker").className = "btn btn-primary btn-lg btn-block";
     document.getElementById("btAddObra").className = "btn btn-default btn-sm btn-block";
+    document.getElementById("btShowEditObra").className = "btn btn-default btn-lg btn-block";
     document.getElementById("btShowEditWorker").className = "btn btn-default btn-sm btn-block";
     document.getElementById("btShowUploadObra").className = "btn btn-default btn-sm btn-block";
     document.getElementById("btSearchFile").className = "btn btn-default btn-sm btn-block";
@@ -255,6 +258,7 @@ function showEditWorker() {
     document.getElementById("btNewWorker").className = "btn btn-default btn-sm btn-block";
     document.getElementById("btShowEditWorker").className = "btn btn-primary btn-lg btn-block";
     document.getElementById("btAddObra").className = "btn btn-default btn-sm btn-block";
+    document.getElementById("btShowEditObra").className = "btn btn-default btn-lg btn-block";
     document.getElementById("btShowUploadObra").className = "btn btn-default btn-sm btn-block";
     document.getElementById("btSearchFile").className = "btn btn-default btn-sm btn-block";
     document.getElementById("btShowUploadWorker").className = "btn btn-default btn-sm btn-block";
@@ -263,6 +267,43 @@ function showEditWorker() {
     document.getElementById("btShowSearchReg").className = "btn btn-default btn-sm btn-block";
 
 }
+
+function showEditObra() {
+    $.post(
+            base_url + "controller/showEditObra",{},
+            function (pagina, data) {
+                $("#container").html(pagina, data);
+            }
+    );
+    document.getElementById("btNewWorker").className = "btn btn-default btn-sm btn-block";
+    document.getElementById("btShowEditWorker").className = "btn btn-default btn-lg btn-block";
+    document.getElementById("btShowEditObra").className = "btn btn-primary btn-lg btn-block";
+    document.getElementById("btAddObra").className = "btn btn-default btn-sm btn-block";
+    document.getElementById("btShowUploadObra").className = "btn btn-default btn-sm btn-block";
+    document.getElementById("btSearchFile").className = "btn btn-default btn-sm btn-block";
+    document.getElementById("btShowUploadWorker").className = "btn btn-default btn-sm btn-block";
+    document.getElementById("btShowSearchFileWorker").className = "btn btn-default btn-sm btn-block";
+    document.getElementById("btShowCreateCard").className = "btn btn-default btn-sm btn-block";
+    document.getElementById("btShowSearchReg").className = "btn btn-default btn-sm btn-block";
+
+}
+
+function deleteObra(id_obra){
+    $.post(
+        base_url + "controller/deleteObra",{id_obra : id_obra},
+        function(){
+            showEditObra();
+        });
+}
+
+function deleteWorker(rut){
+  $.post(
+        base_url + "controller/deleteWorker",{rut : rut},
+        function (){
+            showEditWorker();
+        });
+}
+
 function showUploadWorker() {
     $.post(
             base_url + "controller/showUploadWorker",
@@ -274,6 +315,7 @@ function showUploadWorker() {
     document.getElementById("btShowUploadWorker").className = "btn btn-primary btn-lg btn-block";
     document.getElementById("btNewWorker").className = "btn btn-default btn-sm btn-block";
     document.getElementById("btShowEditWorker").className = "btn btn-default btn-sm btn-block";
+    document.getElementById("btShowEditObra").className = "btn btn-default btn-lg btn-block";
     document.getElementById("btAddObra").className = "btn btn-default btn-sm btn-block";
     document.getElementById("btShowUploadObra").className = "btn btn-default btn-sm btn-block";
     document.getElementById("btSearchFile").className = "btn btn-default btn-sm btn-block";
@@ -318,6 +360,7 @@ function showSearchFileWorker() {
     document.getElementById("btAddObra").className = "btn btn-default btn-sm btn-block";
     document.getElementById("btShowUploadObra").className = "btn btn-default btn-sm btn-block";
     document.getElementById("btNewWorker").className = "btn btn-default btn-sm btn-block";
+    document.getElementById("btShowEditObra").className = "btn btn-default btn-lg btn-block";
     document.getElementById("btShowEditWorker").className = "btn btn-default btn-sm btn-block";
     document.getElementById("btShowUploadWorker").className = "btn btn-default btn-sm btn-block";
     document.getElementById("btShowCreateCard").className = "btn btn-default btn-sm btn-block";
@@ -335,6 +378,7 @@ function showCreateCard() {
     document.getElementById("btShowCreateCard").className = "btn btn-primary btn-lg btn-block";
     document.getElementById("btSearchFile").className = "btn btn-default btn-sm btn-block";
     document.getElementById("btAddObra").className = "btn btn-default btn-sm btn-block";
+    document.getElementById("btShowEditObra").className = "btn btn-default btn-lg btn-block";
     document.getElementById("btShowEditWorker").className = "btn btn-default btn-sm btn-block";
     document.getElementById("btShowUploadObra").className = "btn btn-default btn-sm btn-block";
     document.getElementById("btNewWorker").className = "btn btn-default btn-sm btn-block";
@@ -357,6 +401,7 @@ function showSearchReg() {
     document.getElementById("btShowEditWorker").className = "btn btn-default btn-sm btn-block";
     document.getElementById("btSearchFile").className = "btn btn-default btn-sm btn-block";
     document.getElementById("btAddObra").className = "btn btn-default btn-sm btn-block";
+    document.getElementById("btShowEditObra").className = "btn btn-default btn-lg btn-block";
     document.getElementById("btShowUploadObra").className = "btn btn-default btn-sm btn-block";
     document.getElementById("btNewWorker").className = "btn btn-default btn-sm btn-block";
     document.getElementById("btShowUploadWorker").className = "btn btn-default btn-sm btn-block";

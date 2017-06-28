@@ -1,4 +1,4 @@
-<div class="col-md-10">
+<div class="jumbotron">
     <form action="<?php echo base_url() ?>index.php/controller/uploadTest" method="post" name="formuw" enctype="multipart/form-data" class="form-horizontal" onSubmit="return formVal()">
         <div class="form-group">
             <label class="col-md-4 control-label">Seleccione Obra</label>

@@ -1,4 +1,4 @@
-<div id="uploadObraBack" class="col-md-10">
+<div id="uploadObraBack" class="jumbotron">
 <form action="<?php echo base_url()?>index.php/controller/uploadObra" method="post" enctype="multipart/form-data" class="form-horizontal">
     
         <div class="form-group">

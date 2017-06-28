@@ -1,3 +1,5 @@
+<div class="jumbotron">
+<div class="row">
 <div class="modal-back" id="modal-back">
     
 </div>
@@ -17,7 +19,7 @@
     </div>
     <div class="col-md-offset-4 col-md-5">
         <table id="table-obra" class="table table-bordered">
-            <tr><th class="table-headers" style="text-align: center; background-color: #666666">Obras</th></tr>
+            <tr><th class="table">Obras</th></tr>
             <?php
             if ($data != NULL) {
                 foreach ($data->result() as $items) {
@@ -27,6 +29,6 @@
 } ?></tr>
         </table>
     </div>
+    </div>
 </div>
-
-
+</div>

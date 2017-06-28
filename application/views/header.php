@@ -20,7 +20,6 @@
     <script type="text/javascript">
             var base_url ='<?php echo base_url()?>index.php/';
     </script>
-    <meta name="viewport" content="width-device-width, user-scalable-no, initial-scale-1.0, minumun-scale-1.0">
   </head>
   <body>
 

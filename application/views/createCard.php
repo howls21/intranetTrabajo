@@ -1,4 +1,9 @@
-<div class="ccCont">
+<div class="jumbotron">
+<div class="row">
+<div class="col-md-4">
+  
+</div>
+<div class="col-md-4">
 <div class="form-group">
     <label for="exampleInputEmail1">Trabajador</label>
     <select class="form-control" id="slCC">
@@ -23,4 +28,5 @@
   </div>  
     <button type="submit" class="btn btn-default" onclick="saveCard()">Guardar</button>
 </div>
-
+</div>
+</div>

@@ -1,4 +1,7 @@
-<div class="sfCont">
+<div class="jumbotron">
+<div class="row">
+<div class="col-md-4"></div>
+<div class="col-md-4">
 <div class="form-group">
     <label for="exampleInputEmail1">Obra</label>
     <select class="form-control" id="slobra">
@@ -20,8 +23,9 @@
     <div class="form-group" id="meses">
         
     </div>
-</div>
 <div id="aCont">
     
 </div>
-
+</div>
+</div>
+</div>

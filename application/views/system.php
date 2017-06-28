@@ -1,18 +1,13 @@
    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
       <div class="container-fluid">
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-            <a class="navbar-brand" href="<?php echo base_url()?>">Intranet</a>
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"></button>
+            <a class="navbar-brand" href="<?php echo base_url()?>">Intranet ECORIMA</a>
         </div>
         <div class="navbar-collapse collapse">
         <nav>
             <ul class="nav navbar-nav navbar-right" id="exit-ul">
-                <li id="menu"><a onclick="killCookie()" href="#"><span class="glyphicon glyphicon-user" style="font-size: 20px"></span>  Salir</a>
+                <li id="menu"><a onclick="killCookie()" ><span class="glyphicon glyphicon-user"></span>  Salir</a>
              </li>
           </ul>
         </nav>
@@ -24,7 +19,7 @@
       <div class="row">
           <div id="left-menu">
               <button id="btAddObra" type="button" class="btn btn-default btn-sm btn-block" onclick="addObra()">Agregar Obra</button>
-              <button id="btAddObra" type="button" class="btn btn-default btn-sm btn-block" onclick="editObra()">Editar Obra</button>
+              <button id="btShowEditObra" type="button" class="btn btn-default btn-sm btn-block" onclick="showEditObra()">Editar Obra</button>
               <button id="btShowUploadObra" type="button" class="btn btn-default btn-sm btn-block" onclick="showUploadObra()">Subir archivos (Obra)</button>
               <button id="btSearchFile" type="button" class="btn btn-default btn-sm btn-block" onclick="searchFile()">Buscar Archivos(Obra)</button>
               <button id="btNewWorker" type="button" class="btn btn-default btn-sm btn-block" onclick="showNewWorker()">Ingresar Trabajador</button>

@@ -15,6 +15,12 @@ class Model extends CI_Model{
     function addWorker($data){
        return $this->db->insert('trabajador',$data);
     }
+    function deleteWorker($rut){
+      return $this->db->query("delete from trabajador where rut = $rut");
+    }
+    function deleteObra($id_obra){
+      return $this->db->query("delete from obra where id_obra = $id_obra");
+    }
     function workerList(){
        $this->db->select("*");
        $data = $this->db->get('trabajador');

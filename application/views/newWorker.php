@@ -1,5 +1,5 @@
 
-<div class="col-md-10">
+<div class="jumbotron">
     <form class="form-horizontal" action="<?php echo base_url()?>index.php/controller/saveNewWorker" method="post">
         <div class="form-group">
             <label class="col-md-4 control-label">Nombre</label>
