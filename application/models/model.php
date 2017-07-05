@@ -18,6 +18,10 @@ function addWorker($data){
 function deleteWorker($rut){
   return $this->db->query("delete from trabajador where rut = '$rut'");
 }
+function editWorkerUpdate($rut, $nombre, $apellido_paterno, $apellido_materno){
+  $this->db->query("update trabajador set nombre = '$nombre', apellido_paterno = '$apellido_paterno', apellido_materno = '$apellido_materno' WHERE rut = '$rut' ");
+  return true;
+}
 function editWorkerRut($rut, $nombre, $apellido_paterno, $apellido_materno){
   $data = array(
     'rut' => $rut ,
@@ -30,6 +34,10 @@ function editWorkerRut($rut, $nombre, $apellido_paterno, $apellido_materno){
 }
 function deleteObra($id_obra){
   return $this->db->query("delete from obra where id_obra = $id_obra");
+}
+function editObra($id_obra, $nombre_obra){
+  $this->db->query("update obra SET nombre_obra = '$nombre_obra' WHERE id_obra = '$id_obra' ");
+  return true;
 }
 function workerList(){
  $this->db->select("*");

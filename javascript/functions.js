@@ -265,16 +265,39 @@ function showEditWorker() {
     document.getElementById("btShowSearchReg").className = "btn btn-default btn-sm btn-block";
 
 }
-function editWorkerRut(rut){
+function editWorkerRut(modal){
     $.post(
         base_url + "controller/editWorkerRut",{
-            rut : rut,
-            nombre: $("#inNameWorker").val(),
-            apellido_paterno: $("#inApellidoPaterno").val(),
-            apellido_materno: $("#inApellidoMaterno").val()
-        },);
+        },function(){
+            $("#editWorkerModal"+modal).modal("show");
+        });
 }
-
+function editWorkerUpdate(modal){
+    $.post(
+        base_url + "controller/editWorkerUpdate",{
+            rut : $("#inRutWorker"+modal).val(),
+            nombre : $("#inNameWorker"+modal).val(),
+            apellido_paterno : $("#inApellidoPaterno"+modal).val(),
+            apellido_materno : $("#inApellidoMaterno"+modal).val()
+        },function(){
+            $("#editWorkerModal"+modal).modal("toggle");
+            setTimeout("showEditWorker();", 1000);
+            
+        });
+}
+function editObra(modal){
+    $("#editObraModal"+modal).modal("show");
+}
+function editObraId(id,modal){
+    $.post(
+        base_url + "controller/editObraId",{
+            id_obra : id,
+            nombre_obra : $("#inNameObra"+modal).val()
+        },function(){
+            $("#editObraModal"+modal).modal("toggle");
+            setTimeout("showEditObra();", 1000);
+        });
+}
 function showEditObra() {
     $.post(
         base_url + "controller/showEditObra",{},
@@ -293,9 +316,6 @@ function showEditObra() {
     document.getElementById("btShowCreateCard").className = "btn btn-default btn-sm btn-block";
     document.getElementById("btShowSearchReg").className = "btn btn-default btn-sm btn-block";
 
-}
-
-function searchObra(){
 }
 
 function deleteObra(id_obra){
@@ -489,3 +509,22 @@ function saveCard(){
         }
         );
     }
+    
+function soloLetras(e){
+       key = e.keyCode || e.which;
+       tecla = String.fromCharCode(key).toLowerCase();
+       letras = " áéíóúabcdefghijklmnñopqrstuvwxyz";
+       especiales = "8-37-39-46";
+
+       tecla_especial = false
+       for(var i in especiales){
+            if(key == especiales[i]){
+                tecla_especial = true;
+                break;
+            }
+        }
+
+        if(letras.indexOf(tecla)==-1 && !tecla_especial){
+            return false;
+        }
+}

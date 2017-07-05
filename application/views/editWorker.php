@@ -16,8 +16,7 @@
            <td><?php echo $fila->apellido_paterno ?></td>
            <td><?php echo $fila->apellido_materno ?></td>
            <td>
-             <button id="editar<?php echo $i ?>" onclick="editWorkerRut(<?php echo $fila->rut ?>)" class="btn btn-sm btn-block btn-default"
-               data-toggle='modal' data-target='#editWorkerModal<?php echo $i ?>'><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Editar</button>
+             <button id="editar<?php echo $i ?>" onclick="editWorkerRut('<?php echo $i ?>')" class="btn btn-sm btn-block btn-default"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Editar</button>
                <div class="modal fade bs-example-modal-sm" id="editWorkerModal<?php echo $i ?>" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-sm">
                   <div class="modal-content">
@@ -26,23 +25,37 @@
                       <h5 class="modal-title"><label>Editar Trabajador</label></h5>
                     </div>
                     <div class="modal-body">
-                      <label>Rut</label>
-                      <input  id="inRutWorker" class="form-control" value="<?php echo $fila->rut ?>" disabled/><br>
-                      <label>Nombre</label>
-                      <input  id="inNameWorker" class="form-control" value="<?php echo $fila->nombre ?>" autofocus/><br>
-                      <label>Apellido Paterno</label>
-                      <input id="inApellidoPaterno" class="form-control" value="<?php echo $fila->apellido_paterno ?>" /><br>
-                      <label>Apellido Materno</label>
-                      <input id="inApellidoMaterno" class="form-control" value="<?php echo $fila->apellido_materno ?>" /><br>
+
+                      <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon1">RUT</span>
+                        <input  id="inRutWorker<?php echo $i ?>" class="form-control" value="<?php echo $fila->rut ?>" disabled/>
+                      </div>
+                      <br>
+                      <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon2">Nombre</span>
+                        <input  id="inNameWorker<?php echo $i ?>" maxlength="15" class="form-control" value="<?php echo $fila->nombre ?>" onkeypress="return soloLetras(event)" autofocus/>
+                      </div>
+                      <br>
+                      <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon2">Apellido Patarno</span>
+                        <input id="inApellidoPaterno<?php echo $i ?>" maxlength="15" class="form-control" value="<?php echo $fila->apellido_paterno ?>" onkeypress="return soloLetras(event)" />
+                      </div>
+                      <br>
+                      <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon2">Apellido Materno</span>
+                        <input id="inApellidoMaterno<?php echo $i ?>" maxlength="15" class="form-control" value="<?php echo $fila->apellido_materno ?>" onkeypress="return soloLetras(event)"  />
+                      </div>
+                      <br>
                       <div class="alert alert-info">Si quieres editar el Rut, debes eliminar al trabajador y crearlo nuevamente!</div>
+
                     </div>
                     <div class="modal-footer">
-                      <button class="btn btn-success" data-dismiss="modal" onclick="editWorkerRut('<?php echo $fila->rut ?>')"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Editar</button>
+                      <button class="btn btn-success" onclick="editWorkerUpdate(<?php echo $i ?>)"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Editar</button>
                       <button class="btn btn-danger" data-dismiss="modal"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Cerrar</button>
                     </div>
-                  </div><!-- /.modal-content -->
-                </div><!-- /.modal-dialog -->
-              </div><!-- /.modal -->
+                  </div>
+                </div>
+              </div>
 
             </td>
             <td>

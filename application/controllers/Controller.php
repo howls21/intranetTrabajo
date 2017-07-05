@@ -301,6 +301,7 @@ function editWorkerRut(){
 
  $this->modelo->editWorkerRut($rut, $nombre, $apellido_paterno, $apellido_materno);
 }
+
 function deleteObra(){
   $id_obra = $this->input->post('id_obra');
   $this->model->deleteObra($id_obra);
@@ -310,6 +311,32 @@ function showEditObra(){
   $data['cantidad'] = $query->num_rows();
   $data['resultado'] = $query->result();
   $this->load->view('editObra',$data);
+}
+function editObraId(){
+  $id_obra = $this->input->post('id_obra');
+  $nombre_obra = $this->input->post('nombre_obra');
+
+  $query = $this->model->editObra($id_obra, $nombre_obra);
+
+  if($query == true){
+    $query = $this->model->obraList();
+    $data['cantidad'] = $query->num_rows();
+    $data['resultado'] = $query->result();
+    $this->load->view('editObra', $data);
+  }else{
+    $query = $this->model->obraList();
+    $data['cantidad'] = $query->num_rows();
+    $data['resultado'] = $query->result();
+    $this->load->view('editObra', $data);
+  }
+}
+function editWorkerUpdate(){
+  $rut = $this->input->post('rut');
+  $nombre = $this->input->post('nombre');
+  $apellido_paterno = $this->input->post('apellido_paterno');
+  $apellido_materno = $this->input->post('apellido_materno');
+
+  $this->model->editWorkerUpdate($rut, $nombre, $apellido_paterno, $apellido_materno);
 }
 function saveNewWorker(){
   if($_POST['workerName'] != "" || $_POST['workerLastname1'] !="" || $_POST['workerLastname2'] !="" || $_POST['rutWorker'] !=""){
