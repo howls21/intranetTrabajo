@@ -161,6 +161,16 @@ function searchState($worker,$idObra){
 function addState($data){
  $this->db->insert('estado',$data);
 }
+function awList($y,$m, $obra, $rut){
+        $mes = null;
+        if($m < 10){
+            $mes = "0".$m;
+        }  else {
+           $mes = $m; 
+        }
+        $query = $this->db->query("SELECT * FROM marcaciones m JOIN tarjeta_nfc t on m.tarjeta_nfc_id_tarjeta = t.id_tarjeta JOIN obra o ON t.id_obra = o.id_obra JOIN trabajador tr ON t.trabajador_rut = tr.rut WHERE m.fecha LIKE '$y-$mes%' AND o.id_obra = '$obra' AND t.trabajador_rut = '$rut'");
+         return $query;
+    }
 
 
 }

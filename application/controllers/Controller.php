@@ -170,7 +170,7 @@ function download(){
 
        }
        function saveObra(){
-        $obra = $this->input->post("nombreObra");
+        $obra = strtoupper(str_replace("ñ", "n", $this->input->post("nombreObra")));
         $data = array (
           "nombre_obra" => $obra
           );
@@ -314,7 +314,7 @@ function showEditObra(){
 }
 function editObraId(){
   $id_obra = $this->input->post('id_obra');
-  $nombre_obra = $this->input->post('nombre_obra');
+  $nombre_obra = strtoupper(str_replace("ñ", "n", $this->input->post('nombre_obra')));
 
   $query = $this->model->editObra($id_obra, $nombre_obra);
 
@@ -332,9 +332,9 @@ function editObraId(){
 }
 function editWorkerUpdate(){
   $rut = $this->input->post('rut');
-  $nombre = $this->input->post('nombre');
-  $apellido_paterno = $this->input->post('apellido_paterno');
-  $apellido_materno = $this->input->post('apellido_materno');
+  $nombre = strtoupper(str_replace("ñ", "n", $this->input->post('nombre')));
+  $apellido_paterno = strtoupper(str_replace("ñ", "n", $this->input->post('apellido_paterno')));
+  $apellido_materno = strtoupper(str_replace("ñ", "n", $this->input->post('apellido_materno')));
 
   $this->model->editWorkerUpdate($rut, $nombre, $apellido_paterno, $apellido_materno);
 }
@@ -522,14 +522,23 @@ function loadAS(){
   $this->load->view('regtable', $data);
 }
 function showDet(){
-  $year = $this->input->post("year");
-  $m = $this->input->post("month");
-  $obra = $this->input->post("obra");
-  $rut = $this->input->post("rut");
-  $query = $this->model->awList($year,$m, $obra, $rut);
-  $data['regw']=$query;
-  $this->load->view('workerdetail', $data);
-}
+          $year = $this->input->post("year");
+          $m = $this->input->post("month");
+          $obra = $this->input->post("obra");
+          $rut = $this->input->post("rut");
+          $dias = array('Lunes', 'Martes','Miercoles','Jueves','Viernes','Sabado','Domingo');
+          $query = $this->model->awList($year,$m, $obra, $rut);
+          $mes = null;
+            if($m < 10){
+                $mes = "0".$m;
+            }  else {
+               $mes = $m; 
+            }
+          $data['regw']=$query;
+          $data['date']=$year."-".$mes."-01";
+          $data['dias']=$dias;
+          $this->load->view('workerdetail', $data);
+      }
 
 
 

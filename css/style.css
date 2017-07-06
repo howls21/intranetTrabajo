@@ -59,7 +59,7 @@ body{
  }
  #table-obra{
      font-weight: bold;
-
+     
  }
  #workerState{
      display: none;
@@ -79,10 +79,49 @@ body{
  .ccCont{
      width: 20%;
      margin: auto;
-
+     
  }
   .sfCont{
      width: 20%;
      margin: auto;
      margin-top: -5%;
+ }
+ #modalWorkerD{
+    width: 700px;
+ }
+ .jumbotron p{
+    font-size: 10px;
+    color: white;
+    text-align: center;
+    padding: 0;
+    margin-bottom: 2px;
+    margin-bottom: 0;
+    padding-bottom: 0;
+ }
+ .ptdd{
+    font-size: 10px;
+    color: white;
+    text-align: center;
+    padding: 0;
+    margin-bottom: 2px;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+ .tdReg{
+    min-height: 30px;
+    max-height: 30px;
+    max-width: 40px;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    font-size: 10px;
+ }
+ .top-p{
+    margin-top: -8%;
+ }
+ .bot-p{
+    bottom: 0;
+    margin-bottom: 0;
+    padding-bottom: 0;
  }

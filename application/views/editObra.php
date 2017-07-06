@@ -25,7 +25,7 @@
                         <div class="modal-body">
                           <div class="input-group">
                             <span class="input-group-addon" id="basic-addon1">Nombre</span>
-                            <input  id="inNameObra<?php echo $i ?>" class="form-control" value="<?php echo $fila->nombre_obra ?>" onkeypress="return soloLetras(event)" autofocus/>
+                            <input  id="inNameObra<?php echo $i ?>" class="form-control" value="<?php echo $fila->nombre_obra ?>" onkeypress="return soloLetras(event)"  autofocus/>
                           </div>
                         </div>
                         <div class="modal-footer">

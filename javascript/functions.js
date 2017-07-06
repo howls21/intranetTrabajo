@@ -492,24 +492,25 @@ function saveCard(){
         );
     }
     function showDet(r){
-        rut = r;
-        obra = $("#slobra").val();
-        year = $("#slaño").val();
-        month = $("#slmes").val();
-        $.post(
+    rut = r;
+    obra = $("#slobra").val();
+    year = $("#slaño").val();
+    month = $("#slmes").val();
+    $.post(
             base_url + "controller/showDet",
             {
               year:year ,
               obra:obra,
               month:month,
               rut: rut
-          },
-          function (pagina) {
-            $("#aCont").html(pagina);
-        }
-        );
-    }
-    
+            },
+            function (pagina) {
+            $('#ModalWorkerD').modal('show');    
+            $("#wdetailc").html(pagina);
+            }
+    );
+}
+
 function soloLetras(e){
        key = e.keyCode || e.which;
        tecla = String.fromCharCode(key).toLowerCase();
