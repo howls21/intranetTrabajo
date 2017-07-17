@@ -18,7 +18,7 @@
     <div class="container-fluid">
       <div class="row">
           <div class="left-menu">
-              <ul class="dropmenu">
+              <ul class="dropmenu btn btn-default">
                 <li id="liworker"><a href="#" onclick="activated(1)">Trabajador</a>
                     <ul>
                       <li><a href="#" onclick="showNewWorker()">Crear Trabajador</a></li>
@@ -46,7 +46,7 @@
                 <li id="licard"><a href="#" onclick="activated(5)">Tarjeta NFC</a>
                     <ul>
                       <li><a href="#" onclick="showCreateCard()">Crear Tarjeta</a></li>
-                      <li><a href="#" onclick="showEditCard()">Editar Tarjeta</a></li>
+                      <li><a href="#" onclick="showEditCard()">Eliminar Tarjeta</a></li>
                     </ul>
                 </li>
                 <li id="lisearch"><a href="#" onclick="showSearchReg()">Buscar Asistencia</a></li>

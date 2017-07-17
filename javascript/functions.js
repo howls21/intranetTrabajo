@@ -400,20 +400,16 @@ function showEditCard(){
 
 }
 
-function editCard(modal, id_obra, rut){
-    $.post(base_url + "controller/editCard",{$id_obra: id_obra},
-          function(data){
-            $("#optionObra").html(data);
-            $("#selectTrabajador").val(rut);
-            $("#selectObra").val(id_obra);
-            $("#editCardModal"+modal).modal("show");
+function deleteCard(id_tarjeta){
+    $.post(base_url + "controller/editCard",{$id_tarjeta: id_tarjeta},
+          function(){
+        showEditCard();
     });
 }
 
 function deleteWorker(rut){
-  $.post(
-    base_url + "controller/deleteWorker",{rut : rut},
-    function (){
+  $.post(base_url + "controller/deleteWorker",{rut : rut},
+          function (){
         showEditWorker();
     });
 }

@@ -48,14 +48,11 @@ function insCard($data){
   return $this->db->insert('tarjeta_nfc',$data);
 }
 function searchCard(){
-    $query = $this->db->query("SELECT * FROM `tarjeta_nfc` t join obra o on t.id_obra = o.id_obra");
+    $query = $this->db->query('select * from tarjeta_nfc t join obra o on t.id_obra = o.id_obra');
     return $query;
 }
-function searchObraById($id_obra){
-    $this->db->select("*");
-    $this->db->where('id_obra', $id_obra);
-    $query = $this->db->get('obra');
-    return $query;
+function deleteCard($id_tarjeta){
+  return $this->db->query("delete from tarjeta_nfc where id_tarjeta = '$id_tarjeta'");
 }
 function obraList(){
  $this->db->select("*");

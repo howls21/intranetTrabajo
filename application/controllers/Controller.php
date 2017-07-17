@@ -303,23 +303,17 @@ function editWorkerRut(){
 }
 function showEditCard(){
   $query = $this->model->searchCard();
-  $obras = $this->model->obraList();
-  $trabajadores = $this->model->workerList();
-  $data['obras']= $obras->result();
-  $data['trabajadores']= $trabajadores->result();
   $data['cantidad']= $query->num_rows();
   $data['resultado']= $query->result();
   $this->load->view('editCard', $data);
 }
-function editCard(){
-    $id_obra = $this->input->post('id_obra');
-    $data = $this->model->searchObraById($id_obra);
-    print($data);
-    $this->load->view($data);
+function deleteCard(){
+    $id_tarjeta = $this->input->post('id_tarjeta');
+    $this->model->deleteCard($id_tarjeta);
 }
 function deleteObra(){
-  $id_obra = $this->input->post('id_obra');
-  $this->model->deleteObra($id_obra);
+    $id_obra = $this->input->post('id_obra');
+    $this->model->deleteObra($id_obra);
 }
 function showEditObra(){
   $query = $this->model->obraList();

@@ -138,18 +138,16 @@ body{
     color: white;
     display: block;
     padding: 15px 20px;
-    background-color: #727272;
+    background-color: #212121;
     text-decoration: none;
     text-align: center;
 }
 .left-menu .dropmenu li a:hover{
-    background-color: #ccc7c7;
-    color: black;
+    background-color: #00695c;
 }
 .left-menu .dropmenu ul{
     display: none;
 }
 .left-menu .dropmenu .activated > a{
-    background-color: #ccc7c7;
-    color: black;
+    background-color: #00695c;
 }
