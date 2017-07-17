@@ -74,7 +74,7 @@
                           <p class="ptdd bot-p">S :<?php echo $key->salida ?></p>
                         </td>
                         <?php
-                        $sum = $key->salida - $key->entrada;
+                        $sum = (int) $key->salida - (int) $key->entrada;
                         $whours += $sum;
                          $c=true; break; }?>
                                  

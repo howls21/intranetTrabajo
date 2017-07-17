@@ -17,19 +17,42 @@
 
     <div class="container-fluid">
       <div class="row">
-          <div id="left-menu">
-              <button id="btAddObra" type="button" class="btn btn-default btn-sm btn-block" onclick="addObra()">Agregar Obra</button>
-              <button id="btShowEditObra" type="button" class="btn btn-default btn-sm btn-block" onclick="showEditObra()">Editar Obra</button>
-              <button id="btShowUploadObra" type="button" class="btn btn-default btn-sm btn-block" onclick="showUploadObra()">Subir archivos (Obra)</button>
-              <button id="btSearchFile" type="button" class="btn btn-default btn-sm btn-block" onclick="searchFile()">Buscar Archivos(Obra)</button>
-              <button id="btNewWorker" type="button" class="btn btn-default btn-sm btn-block" onclick="showNewWorker()">Ingresar Trabajador</button>
-              <button id="btShowEditWorker" type="button" class="btn btn-default btn-sm btn-block" onclick="showEditWorker()">Editar Trabajador</button>
-              <button id="btShowUploadWorker" type="button" class="btn btn-default btn-sm btn-block" onclick="showUploadWorker()">Subir Archivos(Trabajador)</button>
-              <button id="btShowSearchFileWorker" type="button" class="btn btn-default btn-sm btn-block" onclick="showSearchFileWorker()">Buscar Archivos(Trabajador)</button>
-              <button id="btShowCreateCard" type="button" class="btn btn-default btn-sm btn-block" onclick="showCreateCard()">Crear Tarjeta NFC</button>
-              <button id="btShowSearchReg" type="button" class="btn btn-default btn-sm btn-block" onclick="showSearchReg()">Buscar Asistencia</button>
+          <div class="left-menu">
+              <ul class="dropmenu">
+                <li id="liworker"><a href="#" onclick="activated(1)">Trabajador</a>
+                    <ul>
+                      <li><a href="#" onclick="showNewWorker()">Crear Trabajador</a></li>
+                      <li><a href="#" onclick="showEditWorker()">Editar Trabajador</a></li>
+                    </ul>
+                </li>
+                 <li id="liobra"><a href="#" onclick="activated(2)">Obra</a>
+                    <ul>
+                      <li><a href="#" onclick="addObra()">Crear Obra</a></li>
+                      <li><a href="#" onclick="showEditObra()">Editar Obra</a></li>
+                    </ul>
+                </li>
+                <li id="liupload"><a href="#" onclick="activated(3)">Subir Archivos</a>
+                    <ul>
+                      <li><a href="#" onclick="showUploadWorker()">Subir Archivos (Trabajador)</a></li>
+                      <li><a href="#" onclick="showUploadObra()">Subir Archivos (Obra)</a></li>
+                    </ul>
+                </li>
+                <li id="lidownload"><a href="#" onclick="activated(4)">Buscar Archivos</a>
+                    <ul>
+                      <li><a href="#" onclick="showSearchFileWorker()">Buscar Archivos (Trabajador)</a></li>
+                      <li><a href="#" onclick="searchFile()">Buscar Archivos (Obra)</a></li>
+                    </ul>
+                </li>
+                <li id="licard"><a href="#" onclick="activated(5)">Tarjeta NFC</a>
+                    <ul>
+                      <li><a href="#" onclick="showCreateCard()">Crear Tarjeta</a></li>
+                      <li><a href="#">Editar Tarjeta</a></li>
+                    </ul>
+                </li>
+                <li id="lisearch"><a href="#" onclick="showSearchReg()">Buscar Asistencia</a></li>
+              </ul>
         </div>
-          <div class="col-sm-9 col-sm-offset-3 col-md-9 col-md-offset-2 main" id="container">
+          <div class="col-sm-9 col-md-9  main" id="container">
 
         </div>
       </div>

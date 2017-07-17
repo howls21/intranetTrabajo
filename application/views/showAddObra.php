@@ -8,7 +8,7 @@
         <div class="form-group">
             <label for="inputEmail3" class="col-md-4 control-label">Nombre de obra</label>
             <div class="col-md-5">
-                <input type="text" id="nombreObra"  class="form-control" placeholder="Nombre Obra" maxlength="30">
+                <input type="text" id="nombreObra"  class="form-control" placeholder="Nombre Obra" maxlength="30" onkeypress="return soloLetras(event)">
             </div>
         </div>
         <div class="form-group">

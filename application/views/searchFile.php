@@ -27,7 +27,7 @@
         <div class="form-group">
              <label class="col-md-4 control-label">Ingrese Año</label>
              <div class="col-md-4">
-             <input type="text" class="form-control" name="year" id="year" onkeypress="numberValidation()" maxlength="4" onblur="yearValidation()"/><br>
+             <input type="text" class="form-control" name="year" id="year" onkeypress="return soloNumeros(event)" maxlength="4" onblur="yearValidation()"/><br>
              </div>
         </div>
         <div class="form-group">

@@ -1,8 +1,61 @@
-$(document).ready(
-    function () {
-        cookieCheck();
-        datePicker1();
-    }); 
+$(document).ready(function() {
+    $('.dropmenu li').click(function(e) {
+        e.preventDefault();
+    });
+     
+});
+function activated(num){
+    $('#liworker').removeClass('activated');
+    $('#liobra').removeClass('activated');
+    $('#liupload').removeClass('activated');
+    $('#lidownload').removeClass('activated');
+    $('#licard').removeClass('activated');
+    $('#lisearch').removeClass('activated');
+    if (num == 1) {
+        $('#liworker').addClass('activated');
+        $('.dropmenu #liworker ul').slideDown();
+        $('.dropmenu #liobra ul').slideUp();
+        $('.dropmenu #liupload ul').slideUp();
+        $('.dropmenu #lidownload ul').slideUp();
+        $('.dropmenu #licard ul').slideUp();
+    }else if (num == 2) {
+        $('#liobra').addClass('activated');
+        $('.dropmenu #liobra ul').slideDown();
+        $('.dropmenu #liworker ul').slideUp();
+        $('.dropmenu #liupload ul').slideUp();
+        $('.dropmenu #lidownload ul').slideUp();
+        $('.dropmenu #licard ul').slideUp();
+    }else if (num == 3) {
+        $('#liupload').addClass('activated');
+        $('.dropmenu #liupload ul').slideDown();
+        $('.dropmenu #liobra ul').slideUp();
+        $('.dropmenu #liworker ul').slideUp();
+        $('.dropmenu #lidownload ul').slideUp();
+        $('.dropmenu #licard ul').slideUp();
+    }else if (num == 4) {
+        $('#lidownload').addClass('activated');
+        $('.dropmenu #lidownload ul').slideDown();
+        $('.dropmenu #liupload ul').slideUp();
+        $('.dropmenu #liobra ul').slideUp();
+        $('.dropmenu #liworker ul').slideUp();
+        $('.dropmenu #licard ul').slideUp();
+    }else if (num == 5) {
+        $('#licard').addClass('activated');
+        $('.dropmenu #licard ul').slideDown();
+        $('.dropmenu #lidownload ul').slideUp();
+        $('.dropmenu #liupload ul').slideUp();
+        $('.dropmenu #liobra ul').slideUp();
+        $('.dropmenu #liworker ul').slideUp();
+    }else if (num == 6) {
+        $('#lisearch').addClass('activated');
+        $('.dropmenu #licard ul').slideUp();
+        $('.dropmenu #lidownload ul').slideUp();
+        $('.dropmenu #liupload ul').slideUp();
+        $('.dropmenu #liobra ul').slideUp();
+        $('.dropmenu #liworker ul').slideUp();
+        
+    }
+}
 function messageModal() {
     dialog2 = $("#dialog").dialog({
         autoOpen: false,
@@ -14,11 +67,10 @@ function messageModal() {
             OK: function () {
                 dialog2.dialog("close");
             }
-
         },
     });
 }
-function numberValidation() {
+function numberValidation(event) {
     if ((event.keyCode < 48) || (event.keyCode > 57))
         event.returnValue = false;
 }
@@ -419,6 +471,7 @@ function showCreateCard() {
 
 }
 function showSearchReg() {
+    activated(6);
     $.post(
         base_url + "controller/showSearchReg",
         {},
@@ -516,8 +569,7 @@ function soloLetras(e){
        tecla = String.fromCharCode(key).toLowerCase();
        letras = " áéíóúabcdefghijklmnñopqrstuvwxyz";
        especiales = "8-37-39-46";
-
-       tecla_especial = false
+       tecla_especial = false;
        for(var i in especiales){
             if(key == especiales[i]){
                 tecla_especial = true;
@@ -528,4 +580,23 @@ function soloLetras(e){
         if(letras.indexOf(tecla)==-1 && !tecla_especial){
             return false;
         }
+}
+function soloNumeros(e) {
+    var key = window.Event ? e.which : e.keyCode
+    if (key == 8) {
+        return key;
+    }else{
+    return (key >= 48 && key <= 57)}
+}
+function formVal(){
+    if ($("#fObra").val()!="" && $("#fCat").val()!="" && $("#fyear").val()!="" && $("#fMonth").val()!="" && $("#farchivo").val()!="") {
+        document.formObra.submit();
+    }else{
+        alert("¡Ingrese todos los campos!")
+    }
+}
+function formWVal(){
+    if ($("#workerName").val()!="") {
+        alert("hola");
+    }
 }

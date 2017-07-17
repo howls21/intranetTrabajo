@@ -1,10 +1,10 @@
 <div id="uploadObraBack" class="jumbotron">
-<form action="<?php echo base_url()?>index.php/controller/uploadObra" method="post" enctype="multipart/form-data" class="form-horizontal">
+<form name="formObra" action="<?php echo base_url()?>index.php/controller/uploadObra" method="post" enctype="multipart/form-data" class="form-horizontal">
     
         <div class="form-group">
             <label class="col-md-4 control-label">Seleccione Obra</label>
             <div class="col-md-4">
-            <select name="obra" class="form-control">
+            <select name="obra" id="fObra" class="form-control">
                 <option value="">Seleccione..</option>
                  <?php
                    if($data != NULL){
@@ -17,7 +17,7 @@
     <div class="form-group">
          <label class="col-md-4 control-label">Seleccione Categoría</label>
          <div class="col-md-4">
-             <select name="cat" class="form-control">
+             <select name="cat" id="fCat" class="form-control">
                  <option value="">Seleccione..</option>
                  <option value="vacaciones">vacaciones</option>
                  <option value="detallepago">Detalle Pago</option>
@@ -28,13 +28,13 @@
     <div class="form-group">
          <label class="col-md-4 control-label">Ingrese Año</label>
          <div class="col-md-4">
-             <input type="text" class="form-control" name="year" id="year" onkeypress="numberValidation()" maxlength="4" onblur="yearValidation()"/><br>
+             <input type="text" class="form-control" name="year" id="fyear" onkeypress="return soloNumeros(event)" maxlength="4" onblur="yearValidation()"/><br>
          </div>
     </div>    
     <div class="form-group">
         <label class="col-md-4 control-label">Seleccione Mes</label>
          <div class="col-md-4">
-             <select name="month" class="form-control">
+             <select name="month" id="fMonth" class="form-control">
                  <option value="">Seleccione..</option>
                  <option value="enero">Enero</option>
                  <option value="febrero">Febrero</option>
@@ -54,17 +54,15 @@
     <div class="form-group">
          
          <div class="col-md-6">
-             <input type="file" name="archivo" id="archivo" class="form-control col-md-offset-4" multiple=""/> 
+             <input type="file" name="archivo" id="farchivo" class="form-control col-md-offset-4" multiple=""/> 
          </div>
     </div>
-    <div class="form-group">
+</form>
+<div class="form-group">
          <label class="col-md-4 control-label"></label>
          <div class="col-md-4">
-             <input type="submit" value="Subir archivo" class="btn btn-default col-md-offset-6"/> 
+             <input type="submit" value="Subir archivo" class="btn btn-default col-md-offset-6" onclick="formVal()" /> 
          </div>
     </div>
-    
-    
-</form>
 </div>
 

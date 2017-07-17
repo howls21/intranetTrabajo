@@ -47,15 +47,11 @@ body{
      border-radius: 8px;
      min-width: 150px;
  }
- #left-menu button{
-     font-size: 12px;
-     font-weight: bold;
- }
- #container{
+#container{
      float: left;
      margin-top: 3%;
      height: 600px;
-     margin-left: 3%;
+     
  }
  #table-obra{
      font-weight: bold;
@@ -125,3 +121,35 @@ body{
     margin-bottom: 0;
     padding-bottom: 0;
  }
+ /*********************************estilo menu***********************************/
+.left-menu{
+    width: 22%;
+    min-width: 200px;
+    float: left;
+    margin-top: 70px;
+}
+.left-menu .dropmenu{
+    width: 100%;
+}
+.left-menu ul{
+    list-style: none;
+}
+.left-menu .dropmenu li a{
+    color: white;
+    display: block;
+    padding: 15px 20px;
+    background-color: #727272;
+    text-decoration: none;
+    text-align: center;
+}
+.left-menu .dropmenu li a:hover{
+    background-color: #ccc7c7;
+    color: black;
+}
+.left-menu .dropmenu ul{
+    display: none;
+}
+.left-menu .dropmenu .activated > a{
+    background-color: #ccc7c7;
+    color: black;
+}

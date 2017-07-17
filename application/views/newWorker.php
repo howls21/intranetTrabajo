@@ -31,11 +31,11 @@
           </script>
             </div>
         </div>
-        <div class="form-group">
+    </form>
+    <div class="form-group">
             <label class="col-md-4 control-label"></label>
             <div class="col-md-5">
-                <button class="btn btn-default col-md-offset-6">Guardar</button>
+                <button class="btn btn-default col-md-offset-6" onclick="formWVal()">Guardar</button>
             </div>
         </div>
-    </form>
 </div>
