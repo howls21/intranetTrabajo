@@ -7,8 +7,8 @@ class Controller extends CI_Controller {
     $this->load->model('BD_asistencia');
   }
 
-  public function index()
-  {
+public function index(){
+      
     if($this->session->userdata("connected")){
       $data['user'] = $this->session->userdata("userName");
       $this->load->view('header');
@@ -18,23 +18,23 @@ class Controller extends CI_Controller {
       $this->load->view('header');
       $this->load->view('login');
     }
-  }
-  public function test(){
+}
+public function test(){
     date_default_timezone_set('America/Santiago');
     $hora = getdate();
     print_r($hora['hours'].":".$hora['minutes'].":".$hora['seconds']);
 
   }
-  function insertar_datos()
-  {
+function insertar_datos(){
+
     date_default_timezone_set('UTC');
     $id_tarjeta_= $this->input->get('id');
 
     $estado = $this->BD_asistencia->marcar_hora($id_tarjeta_);
     echo $estado;
                 //recorremos el array con los datos de e
-  }
-  function conection(){
+}
+function conection(){
     $user = $this->input->post("user");
     $password = $this->input->post("password");
     $query = $this->model->conection($user, $password);
@@ -55,7 +55,7 @@ class Controller extends CI_Controller {
    }
    $this->session->set_userdata($datos);
  }
- function validateSession(){
+function validateSession(){
   if($this->session->userdata("connected")){
     $condition = true;
   }else{
@@ -146,7 +146,7 @@ function download(){
           $name = $var;
           force_download($name, $data);
         }
-        function download2(){
+function download2(){
           $this->load->helper('download');
           $var =  $_POST['nombre'];
           $dUrl = $_POST['url'];
@@ -154,12 +154,12 @@ function download(){
           $name = $var;
           force_download($name, $data);
         }
-        function addObra(){
+function addObra(){
           $query = $this->model->obraList();
           $data['data'] = $query;
           $this->load->view('showAddObra',$data);
         }
-        function newObra(){
+function newObra(){
           $data = array(
            "nombre_obra" => $_POST['nombreObra']
            );
@@ -169,7 +169,7 @@ function download(){
          header("index.php");
 
        }
-       function saveObra(){
+function saveObra(){
         $obra = strtoupper(str_replace("ñ", "n", $this->input->post("nombreObra")));
         $data = array (
           "nombre_obra" => $obra
@@ -205,12 +205,12 @@ function download(){
 
       echo json_encode($data);
     }
-    function showUploadObra(){
+function showUploadObra(){
       $query = $this->model->obraList();
       $data['data'] = $query;
       $this->load->view('uploadObra',$data);
     }
-    function uploadObra(){
+function uploadObra(){
       if($_POST['month'] !="" || $_POST['year'] !="" || $_POST['obra'] !="" || $_POST['cat'] !=""){
        $month = strtoupper($_POST['month']);
        $year = $_POST['year'];
@@ -301,7 +301,22 @@ function editWorkerRut(){
 
  $this->modelo->editWorkerRut($rut, $nombre, $apellido_paterno, $apellido_materno);
 }
-
+function showEditCard(){
+  $query = $this->model->searchCard();
+  $obras = $this->model->obraList();
+  $trabajadores = $this->model->workerList();
+  $data['obras']= $obras->result();
+  $data['trabajadores']= $trabajadores->result();
+  $data['cantidad']= $query->num_rows();
+  $data['resultado']= $query->result();
+  $this->load->view('editCard', $data);
+}
+function editCard(){
+    $id_obra = $this->input->post('id_obra');
+    $data = $this->model->searchObraById($id_obra);
+    print($data);
+    $this->load->view($data);
+}
 function deleteObra(){
   $id_obra = $this->input->post('id_obra');
   $this->model->deleteObra($id_obra);

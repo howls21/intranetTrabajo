@@ -1,6 +1,6 @@
 <?php
 class Model extends CI_Model{
-  function conection($user, $password){
+function conection($user, $password){
    $this->db->select("*");
    $this->db->where('nombre_usuario', $user);
    $this->db->where('clave', $password);
@@ -46,6 +46,16 @@ function workerList(){
 }
 function insCard($data){
   return $this->db->insert('tarjeta_nfc',$data);
+}
+function searchCard(){
+    $query = $this->db->query("SELECT * FROM `tarjeta_nfc` t join obra o on t.id_obra = o.id_obra");
+    return $query;
+}
+function searchObraById($id_obra){
+    $this->db->select("*");
+    $this->db->where('id_obra', $id_obra);
+    $query = $this->db->get('obra');
+    return $query;
 }
 function obraList(){
  $this->db->select("*");

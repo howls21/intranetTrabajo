@@ -378,6 +378,38 @@ function deleteObra(id_obra){
         });
 }
 
+function showEditCard(){
+    $.post(
+        base_url + "controller/showEditCard",
+        {},
+        function (pagina, data){ 
+            $("#container").html(pagina, data);
+        }
+    );
+    document.getElementById("btNewWorker").className = "btn btn-default btn-sm btn-block";
+    document.getElementById("btShowEditWorker").className = "btn btn-default btn-sm btn-block";
+    document.getElementById("btAddObra").className = "btn btn-default btn-sm btn-block";
+    document.getElementById("btShowEditObra").className = "btn btn-default btn-sm btn-block";
+    document.getElementById("btShowUploadObra").className = "btn btn-default btn-sm btn-block";
+    document.getElementById("btSearchFile").className = "btn btn-default btn-sm btn-block";
+    document.getElementById("btShowUploadWorker").className = "btn btn-default btn-sm btn-block";
+    document.getElementById("btShowSearchFileWorker").className = "btn btn-default btn-sm btn-block";
+    document.getElementById("btShowCreateCard").className = "btn btn-default btn-sm btn-block";
+    document.getElementById("btShowEditCard").className = "btn btn-primary btn-sm btn-block";
+    document.getElementById("btShowSearchReg").className = "btn btn-default btn-sm btn-block";
+
+}
+
+function editCard(modal, id_obra, rut){
+    $.post(base_url + "controller/editCard",{$id_obra: id_obra},
+          function(data){
+            $("#optionObra").html(data);
+            $("#selectTrabajador").val(rut);
+            $("#selectObra").val(id_obra);
+            $("#editCardModal"+modal).modal("show");
+    });
+}
+
 function deleteWorker(rut){
   $.post(
     base_url + "controller/deleteWorker",{rut : rut},
@@ -467,8 +499,6 @@ function showCreateCard() {
     document.getElementById("btShowUploadWorker").className = "btn btn-default btn-sm btn-block";
     document.getElementById("btShowSearchFileWorker").className = "btn btn-default btn-sm btn-block";
     document.getElementById("btShowSearchReg").className = "btn btn-default btn-sm btn-block";
-
-
 }
 function showSearchReg() {
     activated(6);

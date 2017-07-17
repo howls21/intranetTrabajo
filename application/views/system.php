@@ -46,7 +46,7 @@
                 <li id="licard"><a href="#" onclick="activated(5)">Tarjeta NFC</a>
                     <ul>
                       <li><a href="#" onclick="showCreateCard()">Crear Tarjeta</a></li>
-                      <li><a href="#">Editar Tarjeta</a></li>
+                      <li><a href="#" onclick="showEditCard()">Editar Tarjeta</a></li>
                     </ul>
                 </li>
                 <li id="lisearch"><a href="#" onclick="showSearchReg()">Buscar Asistencia</a></li>
