@@ -178,6 +178,13 @@ function awList($y,$m, $obra, $rut){
         $query = $this->db->query("SELECT * FROM marcaciones m JOIN tarjeta_nfc t on m.tarjeta_nfc_id_tarjeta = t.id_tarjeta JOIN obra o ON t.id_obra = o.id_obra JOIN trabajador tr ON t.trabajador_rut = tr.rut WHERE m.fecha LIKE '$y-$mes%' AND o.id_obra = '$obra' AND t.trabajador_rut = '$rut'");
          return $query;
     }
+function queryUser($user)
+    {
+        $this->db->select("*");
+        $this->db->where('nombre_usuario', $user);
+        $query = $this->db->get('usuario');
+        return $query;
+    }
 
 
 }

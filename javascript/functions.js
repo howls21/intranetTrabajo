@@ -157,16 +157,6 @@ function searchFile() {
             $("#container").html(pagina, data);
         }
         );
-    document.getElementById("btSearchFile").className = "btn btn-primary btn-lg btn-block";
-    document.getElementById("btAddObra").className = "btn btn-default btn-sm btn-block";
-    document.getElementById("btShowUploadObra").className = "btn btn-default btn-sm btn-block";
-    document.getElementById("btShowEditObra").className = "btn btn-default btn-lg btn-block";
-    document.getElementById("btShowEditWorker").className = "btn btn-default btn-sm btn-block";
-    document.getElementById("btNewWorker").className = "btn btn-default btn-sm btn-block";
-    document.getElementById("btShowUploadWorker").className = "btn btn-default btn-sm btn-block";
-    document.getElementById("btShowSearchFileWorker").className = "btn btn-default btn-sm btn-block";
-    document.getElementById("btShowCreateCard").className = "btn btn-default btn-sm btn-block";
-    document.getElementById("btShowSearchReg").className = "btn btn-default btn-sm btn-block";
 }
 function addObra() {
     $.post(
@@ -176,16 +166,6 @@ function addObra() {
             $("#container").html(pagina, data);
         }
         );
-    document.getElementById("btAddObra").className = "btn btn-primary btn-lg btn-block";
-    document.getElementById("btShowUploadObra").className = "btn btn-default btn-sm btn-block";
-    document.getElementById("btSearchFile").className = "btn btn-default btn-sm btn-block";
-    document.getElementById("btShowEditObra").className = "btn btn-default btn-lg btn-block";
-    document.getElementById("btNewWorker").className = "btn btn-default btn-sm btn-block";
-    document.getElementById("btShowEditWorker").className = "btn btn-default btn-sm btn-block";
-    document.getElementById("btShowUploadWorker").className = "btn btn-default btn-sm btn-block";
-    document.getElementById("btShowSearchFileWorker").className = "btn btn-default btn-sm btn-block";
-    document.getElementById("btShowCreateCard").className = "btn btn-default btn-sm btn-block";
-    document.getElementById("btShowSearchReg").className = "btn btn-default btn-sm btn-block";
 }
 function saveObra() {
     if ($("#nombreObra").val() == "") {
@@ -221,16 +201,6 @@ function showUploadObra() {
             $("#container").html(pagina, data);
         }
         );
-    document.getElementById("btShowUploadObra").className = "btn btn-primary btn-lg btn-block";
-    document.getElementById("btAddObra").className = "btn btn-default btn-sm btn-block";
-    document.getElementById("btSearchFile").className = "btn btn-default btn-sm btn-block";
-    document.getElementById("btShowEditObra").className = "btn btn-default btn-lg btn-block";
-    document.getElementById("btShowEditWorker").className = "btn btn-default btn-sm btn-block";
-    document.getElementById("btNewWorker").className = "btn btn-default btn-sm btn-block";
-    document.getElementById("btShowUploadWorker").className = "btn btn-default btn-sm btn-block";
-    document.getElementById("btShowSearchFileWorker").className = "btn btn-default btn-sm btn-block";
-    document.getElementById("btShowCreateCard").className = "btn btn-default btn-sm btn-block";
-    document.getElementById("btShowSearchReg").className = "btn btn-default btn-sm btn-block";
 }
 function datePicker1() {
     $("#datepicker").datepicker({
@@ -285,17 +255,6 @@ function showNewWorker() {
             $("#container").html(pagina);
         }
         );
-    document.getElementById("btNewWorker").className = "btn btn-primary btn-lg btn-block";
-    document.getElementById("btAddObra").className = "btn btn-default btn-sm btn-block";
-    document.getElementById("btShowEditObra").className = "btn btn-default btn-lg btn-block";
-    document.getElementById("btShowEditWorker").className = "btn btn-default btn-sm btn-block";
-    document.getElementById("btShowUploadObra").className = "btn btn-default btn-sm btn-block";
-    document.getElementById("btSearchFile").className = "btn btn-default btn-sm btn-block";
-    document.getElementById("btShowUploadWorker").className = "btn btn-default btn-sm btn-block";
-    document.getElementById("btShowSearchFileWorker").className = "btn btn-default btn-sm btn-block";
-    document.getElementById("btShowCreateCard").className = "btn btn-default btn-sm btn-block";
-    document.getElementById("btShowSearchReg").className = "btn btn-default btn-sm btn-block";
-
 }
 function showEditWorker() {
     $.post(
@@ -305,17 +264,6 @@ function showEditWorker() {
             $("#container").html(pagina, data);
         }
         );
-    document.getElementById("btNewWorker").className = "btn btn-default btn-sm btn-block";
-    document.getElementById("btShowEditWorker").className = "btn btn-primary btn-lg btn-block";
-    document.getElementById("btAddObra").className = "btn btn-default btn-sm btn-block";
-    document.getElementById("btShowEditObra").className = "btn btn-default btn-lg btn-block";
-    document.getElementById("btShowUploadObra").className = "btn btn-default btn-sm btn-block";
-    document.getElementById("btSearchFile").className = "btn btn-default btn-sm btn-block";
-    document.getElementById("btShowUploadWorker").className = "btn btn-default btn-sm btn-block";
-    document.getElementById("btShowSearchFileWorker").className = "btn btn-default btn-sm btn-block";
-    document.getElementById("btShowCreateCard").className = "btn btn-default btn-sm btn-block";
-    document.getElementById("btShowSearchReg").className = "btn btn-default btn-sm btn-block";
-
 }
 function editWorkerRut(modal){
     $.post(
@@ -357,17 +305,6 @@ function showEditObra() {
             $("#container").html(pagina, data);
         }
         );
-    document.getElementById("btNewWorker").className = "btn btn-default btn-sm btn-block";
-    document.getElementById("btShowEditWorker").className = "btn btn-default btn-lg btn-block";
-    document.getElementById("btShowEditObra").className = "btn btn-primary btn-lg btn-block";
-    document.getElementById("btAddObra").className = "btn btn-default btn-sm btn-block";
-    document.getElementById("btShowUploadObra").className = "btn btn-default btn-sm btn-block";
-    document.getElementById("btSearchFile").className = "btn btn-default btn-sm btn-block";
-    document.getElementById("btShowUploadWorker").className = "btn btn-default btn-sm btn-block";
-    document.getElementById("btShowSearchFileWorker").className = "btn btn-default btn-sm btn-block";
-    document.getElementById("btShowCreateCard").className = "btn btn-default btn-sm btn-block";
-    document.getElementById("btShowSearchReg").className = "btn btn-default btn-sm btn-block";
-
 }
 
 function deleteObra(id_obra){
@@ -386,27 +323,7 @@ function showEditCard(){
             $("#container").html(pagina, data);
         }
     );
-    document.getElementById("btNewWorker").className = "btn btn-default btn-sm btn-block";
-    document.getElementById("btShowEditWorker").className = "btn btn-default btn-sm btn-block";
-    document.getElementById("btAddObra").className = "btn btn-default btn-sm btn-block";
-    document.getElementById("btShowEditObra").className = "btn btn-default btn-sm btn-block";
-    document.getElementById("btShowUploadObra").className = "btn btn-default btn-sm btn-block";
-    document.getElementById("btSearchFile").className = "btn btn-default btn-sm btn-block";
-    document.getElementById("btShowUploadWorker").className = "btn btn-default btn-sm btn-block";
-    document.getElementById("btShowSearchFileWorker").className = "btn btn-default btn-sm btn-block";
-    document.getElementById("btShowCreateCard").className = "btn btn-default btn-sm btn-block";
-    document.getElementById("btShowEditCard").className = "btn btn-primary btn-sm btn-block";
-    document.getElementById("btShowSearchReg").className = "btn btn-default btn-sm btn-block";
-
 }
-
-function deleteCard(id_tarjeta){
-    $.post(base_url + "controller/deleteCard",{id_tarjeta: id_tarjeta},
-          function(){
-        showEditCard();
-    });
-}
-
 function deleteWorker(rut){
   $.post(base_url + "controller/deleteWorker",{rut : rut},
           function (){
@@ -422,17 +339,6 @@ function showUploadWorker() {
             $("#container").html(pagina, data);
         }
         );
-    document.getElementById("btShowUploadWorker").className = "btn btn-primary btn-lg btn-block";
-    document.getElementById("btNewWorker").className = "btn btn-default btn-sm btn-block";
-    document.getElementById("btShowEditWorker").className = "btn btn-default btn-sm btn-block";
-    document.getElementById("btShowEditObra").className = "btn btn-default btn-lg btn-block";
-    document.getElementById("btAddObra").className = "btn btn-default btn-sm btn-block";
-    document.getElementById("btShowUploadObra").className = "btn btn-default btn-sm btn-block";
-    document.getElementById("btSearchFile").className = "btn btn-default btn-sm btn-block";
-    document.getElementById("btShowSearchFileWorker").className = "btn btn-default btn-sm btn-block";
-    document.getElementById("btShowCreateCard").className = "btn btn-default btn-sm btn-block";
-    document.getElementById("btShowSearchReg").className = "btn btn-default btn-sm btn-block";
-
 }
 function rutValidation() {
     if ((event.keyCode == 107)) {
@@ -465,17 +371,6 @@ function showSearchFileWorker() {
             $("#container").html(pagina, data);
         }
         );
-    document.getElementById("btShowSearchFileWorker").className = "btn btn-primary btn-lg btn-block";
-    document.getElementById("btSearchFile").className = "btn btn-default btn-sm btn-block";
-    document.getElementById("btAddObra").className = "btn btn-default btn-sm btn-block";
-    document.getElementById("btShowUploadObra").className = "btn btn-default btn-sm btn-block";
-    document.getElementById("btNewWorker").className = "btn btn-default btn-sm btn-block";
-    document.getElementById("btShowEditObra").className = "btn btn-default btn-lg btn-block";
-    document.getElementById("btShowEditWorker").className = "btn btn-default btn-sm btn-block";
-    document.getElementById("btShowUploadWorker").className = "btn btn-default btn-sm btn-block";
-    document.getElementById("btShowCreateCard").className = "btn btn-default btn-sm btn-block";
-    document.getElementById("btShowSearchReg").className = "btn btn-default btn-sm btn-block";
-
 }
 function showCreateCard() {
     $.post(
@@ -485,16 +380,6 @@ function showCreateCard() {
             $("#container").html(pagina);
         }
         );
-    document.getElementById("btShowCreateCard").className = "btn btn-primary btn-lg btn-block";
-    document.getElementById("btSearchFile").className = "btn btn-default btn-sm btn-block";
-    document.getElementById("btAddObra").className = "btn btn-default btn-sm btn-block";
-    document.getElementById("btShowEditObra").className = "btn btn-default btn-lg btn-block";
-    document.getElementById("btShowEditWorker").className = "btn btn-default btn-sm btn-block";
-    document.getElementById("btShowUploadObra").className = "btn btn-default btn-sm btn-block";
-    document.getElementById("btNewWorker").className = "btn btn-default btn-sm btn-block";
-    document.getElementById("btShowUploadWorker").className = "btn btn-default btn-sm btn-block";
-    document.getElementById("btShowSearchFileWorker").className = "btn btn-default btn-sm btn-block";
-    document.getElementById("btShowSearchReg").className = "btn btn-default btn-sm btn-block";
 }
 function showSearchReg() {
     activated(6);
@@ -505,18 +390,6 @@ function showSearchReg() {
             $("#container").html(pagina);
         }
         );
-    document.getElementById("btShowSearchReg").className = "btn btn-primary btn-lg btn-block";
-    document.getElementById("btShowCreateCard").className = "btn btn-default btn-sm btn-block";
-    document.getElementById("btShowEditWorker").className = "btn btn-default btn-sm btn-block";
-    document.getElementById("btSearchFile").className = "btn btn-default btn-sm btn-block";
-    document.getElementById("btAddObra").className = "btn btn-default btn-sm btn-block";
-    document.getElementById("btShowEditObra").className = "btn btn-default btn-lg btn-block";
-    document.getElementById("btShowUploadObra").className = "btn btn-default btn-sm btn-block";
-    document.getElementById("btNewWorker").className = "btn btn-default btn-sm btn-block";
-    document.getElementById("btShowUploadWorker").className = "btn btn-default btn-sm btn-block";
-    document.getElementById("btShowSearchFileWorker").className = "btn btn-default btn-sm btn-block";
-
-
 }
 function saveCard(){
     if($("#slCC").val() !== "" && $("#idCC").val() !== "" && $("#idobra").val() !== ""){
@@ -624,5 +497,55 @@ function formVal(){
 function formWVal(){
     if ($("#workerName").val()!="") {
         alert("hola");
+    }
+}
+function showDeleteCard(id){
+    $('#ModalDelCard').modal('show');
+    $('#cardid').val(id);
+}
+function passVer2(e){
+    var pass = e;
+    $.post(base_url + "controller/passVer", {
+        passw: pass
+    }, function(datos) {
+        if (datos.condition) {
+            document.getElementById("mepPass2").style.border="2px solid green";
+            $("#passCont2").removeClass("has-error has-feedback");
+            $("#passCont2").addClass("has-success has-feedback");
+            $('#ecpass2').val(true);
+            document.getElementById("ecspanS2").style.display="block";
+            document.getElementById("ecspanE2").style.display="none";
+        }else{
+            document.getElementById("ecspanE2").style.display="block";
+            document.getElementById("ecspanS2").style.display="none";
+            document.getElementById("mepPass2").style.border="2px solid red";
+            $("#passCont2").removeClass("has-success has-feedback");
+            $("#passCont2").addClass(" has-error has-feedback");
+            $('#ecpass2').val(false);
+        }
+        }, 'json');
+}
+function passCheck2(){
+    var pass = $('#ecpass2').val();
+    if (pass != "") {
+    if (pass == "true") {
+        return true;
+    }else{
+        return false;
+    }}else{
+        passVer2();
+        return false;
+    }
+}
+function deleteCard(){
+    opt = passCheck2();
+    if (opt) {
+    id = $("#cardid").val();
+    $.post(base_url + "controller/deleteCard",{id_tarjeta: id},
+          function(){
+        $('#ModalDelCard').modal('toggle');
+        setTimeout("showEditCard();", 1000);
+        
+    });
     }
 }

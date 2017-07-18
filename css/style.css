@@ -151,3 +151,16 @@ body{
 .left-menu .dropmenu .activated > a{
     background-color: #00695c;
 }
+/************************************************/
+.passTl {
+    text-align: center;
+    margin-top: -2%;
+    background-color: rgb(237, 226, 14);
+    color: black;
+    padding: 1%;
+    border: 2px solid black;
+    font-weight: bold;
+}
+#ecspanE, #ecspanS, #ecspanE2, #ecspanS2 {
+    display: none;
+}

@@ -548,7 +548,27 @@ function showDet(){
           $data['dias']=$dias;
           $this->load->view('workerdetail', $data);
       }
-
+function passVer()
+    {
+        $pass              = $this->input->post("passw");
+        $user              = $this->session->userdata("userName");
+        $ver               = $this->userPassV($pass, $user);
+        $data['condition'] = $ver;
+        echo json_encode($data);
+    }
+function userPassV($pass, $user)
+    {
+        $query = $this->model->queryUser($user);
+        $ver   = false;
+        $rpass = "";
+        foreach ($query->result() as $key) {
+            $rpass = $key->clave;
+        }
+        if ($rpass == $pass) {
+            $ver = true;
+        }
+        return $ver;
+    }
 
 
 
