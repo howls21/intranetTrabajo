@@ -485,12 +485,14 @@ function formVal(){
     if ($("#fObra").val()!="" && $("#fCat").val()!="" && $("#fyear").val()!="" && $("#fMonth").val()!="" && $("#farchivo").val()!="") {
         document.formObra.submit();
     }else{
-        alert("¡Ingrese todos los campos!")
+        alert("¡Ingrese todos los campos!");
     }
 }
 function formWVal(){
     if ($("#workerName").val()!="" && $("#wLastname1").val()!="" && $("#wLastname2").val()!="" && $("#rutWorker").val()!="" ) {
         document.formnewworker.submit();
+    }else{
+        alert("¡Ingrese todos los campos!");
     }
 }
 function showDeleteCard(id){
