@@ -401,7 +401,7 @@ function showEditCard(){
 }
 
 function deleteCard(id_tarjeta){
-    $.post(base_url + "controller/editCard",{$id_tarjeta: id_tarjeta},
+    $.post(base_url + "controller/deleteCard",{id_tarjeta: id_tarjeta},
           function(){
         showEditCard();
     });
