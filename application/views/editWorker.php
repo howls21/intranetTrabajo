@@ -59,7 +59,7 @@
 
             </td>
             <td>
-             <button id="delete<?php echo $i ?>" onclick="deleteWorker('<?php echo $fila->rut ?>')" class="btn btn-sm btn-block btn-danger">
+             <button id="delete<?php echo $i ?>" onclick="showDWorker('<?php echo $fila->rut ?>')" class="btn btn-sm btn-block btn-danger">
                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
              </td>
            </tr>
@@ -69,3 +69,35 @@
      <?php endif; ?>
    </div>
    <input type="hidden" id="oculto" value="<php echo $i ?>"/>
+   <div class="modal fade" tabindex="-1" role="dialog" id="ModalDelWorker">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">Eliminar Trabajador</h4>
+        </div>
+        <div class="modal-body">
+          <div class="form-horizontal">
+            <p class="passTl">Para confirmar Ingrese su contraseña!</p>
+          <div class="form-group" id="passCont">
+            <label class="col-sm-4 control-label">Contraseña</label>
+            <div class="col-sm-8" id="ecErrorP2">
+                <input type="password" class="form-control" id="mepPass2" onblur="passVer2(this.value)">
+                <input type="hidden" id="ecpass2" value="" disabled="true">
+                <span id="ecspanE2" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+              <span id="inputError2Status" class="sr-only">(error)</span>
+              <span id="ecspanS2" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+              <span id="inputSuccess2Status" class="sr-only">(success)</span>
+            </div>
+          </div>
+          <input type="hidden" id="wid" value="" disabled="true">
+        </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-primary" onclick="deleteWorker()">Eliminar</button>
+        </div>
+      </div>
+    </div>
+    </div>

@@ -324,12 +324,6 @@ function showEditCard(){
         }
     );
 }
-function deleteWorker(rut){
-  $.post(base_url + "controller/deleteWorker",{rut : rut},
-          function (){
-        showEditWorker();
-    });
-}
 
 function showUploadWorker() {
     $.post(
@@ -495,8 +489,8 @@ function formVal(){
     }
 }
 function formWVal(){
-    if ($("#workerName").val()!="") {
-        alert("hola");
+    if ($("#workerName").val()!="" && $("#wLastname1").val()!="" && $("#wLastname2").val()!="" && $("#rutWorker").val()!="" ) {
+        document.formnewworker.submit();
     }
 }
 function showDeleteCard(id){
@@ -548,4 +542,19 @@ function deleteCard(){
         
     });
     }
+}
+function showDWorker(r){
+    $('#ModalDelWorker').modal('show');
+    $('#wid').val(r);
+}
+function deleteWorker(){
+    rut = $("#wid").val();
+    cond = passCheck2();
+    if (cond) {
+  $.post(base_url + "controller/deleteWorker",{rut : rut},
+          function (){
+          $('#ModalDelWorker').modal('toggle');
+        setTimeout("showEditWorker();", 1000);
+    });
+  }
 }
