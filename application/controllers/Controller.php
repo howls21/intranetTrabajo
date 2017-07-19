@@ -1,11 +1,11 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Controller extends CI_Controller {
-  public function __construct() {
+public function __construct() {
     parent::__construct();
     $this->load->model("model");
     $this->load->model('BD_asistencia');
-  }
+}
 
 public function index(){
       
@@ -25,15 +25,7 @@ public function test(){
     print_r($hora['hours'].":".$hora['minutes'].":".$hora['seconds']);
 
   }
-function insertar_datos(){
-
-    date_default_timezone_set('UTC');
-    $id_tarjeta_= $this->input->get('id');
-
-    $estado = $this->BD_asistencia->marcar_hora($id_tarjeta_);
-    echo $estado;
-                //recorremos el array con los datos de e
-}
+/*--------Validar-------------------*/
 function conection(){
     $user = $this->input->post("user");
     $password = $this->input->post("password");
@@ -91,6 +83,16 @@ function killCookie(){
  $this->session->sess_destroy();
  redirect(base_url());
 }
+/*-------------insertar-------------*/
+function insertar_datos(){
+
+    date_default_timezone_set('UTC');
+    $id_tarjeta_= $this->input->get('id');
+
+    $estado = $this->BD_asistencia->marcar_hora($id_tarjeta_);
+    echo $estado;
+                //recorremos el array con los datos de e
+}
 function loadFile(){
  $query = $this->model->obraList();
  $data['data'] = $query;
@@ -127,48 +129,11 @@ else
 }
 
 }
-function searchFile(){
-  $query = $this->model->obraList();
-  $data['data'] = $query;
-  $this->load->view('searchFile', $data);
-}
-function showSearchFileWorker(){
-  $query = $this->model->obraList();
-  $data['data'] = $query;
-  $query2 = $this->model->workerList();
-  $data['data2'] = $query2;
-  $this->load->view('searchFileWorker', $data);
-}
-function download(){
-  $var =  $_POST['nombre'];
-  $this->load->helper('download');
-          $data = file_get_contents("subidas/talca/vacaciones/2001/$var"); // Read the file's contents
-          $name = $var;
-          force_download($name, $data);
-        }
-function download2(){
-          $this->load->helper('download');
-          $var =  $_POST['nombre'];
-          $dUrl = $_POST['url'];
-          $data = file_get_contents("$dUrl"."$var"); // Read the file's contents
-          $name = $var;
-          force_download($name, $data);
-        }
 function addObra(){
           $query = $this->model->obraList();
           $data['data'] = $query;
           $this->load->view('showAddObra',$data);
-        }
-function newObra(){
-          $data = array(
-           "nombre_obra" => $_POST['nombreObra']
-           );
-          if($this->model->addObra($data)){
-           base_url();
-         }
-         header("index.php");
-
-       }
+}
 function saveObra(){
         $obra = strtoupper(str_replace("ñ", "n", $this->input->post("nombreObra")));
         $data = array (
@@ -205,11 +170,6 @@ function saveObra(){
 
       echo json_encode($data);
     }
-function showUploadObra(){
-      $query = $this->model->obraList();
-      $data['data'] = $query;
-      $this->load->view('uploadObra',$data);
-    }
 function uploadObra(){
       if($_POST['month'] !="" || $_POST['year'] !="" || $_POST['obra'] !="" || $_POST['cat'] !=""){
        $month = strtoupper($_POST['month']);
@@ -241,6 +201,53 @@ function uploadObra(){
    echo"<script type=\"text/javascript\">alert('Debe llenar todos los campos!'); window.location='/intranetTrabajo/index.php';</script>";
  }
 }
+/*------------Buscar----------------*/
+function searchFile(){
+  $query = $this->model->obraList();
+  $data['data'] = $query;
+  $this->load->view('searchFile', $data);
+}
+function download(){
+  $var =  $_POST['nombre'];
+  $this->load->helper('download');
+          $data = file_get_contents("subidas/talca/vacaciones/2001/$var"); // Read the file's contents
+          $name = $var;
+          force_download($name, $data);
+        }
+function download2(){
+          $this->load->helper('download');
+          $var =  $_POST['nombre'];
+          $dUrl = $_POST['url'];
+          $data = file_get_contents("$dUrl"."$var"); // Read the file's contents
+          $name = $var;
+          force_download($name, $data);
+        }
+/*------------Carga de Vistas---------------*/
+function showSearchFileWorker(){
+  $query = $this->model->obraList();
+  $data['data'] = $query;
+  $query2 = $this->model->workerList();
+  $data['data2'] = $query2;
+  $this->load->view('searchFileWorker', $data);
+}
+
+function newObra(){
+          $data = array(
+           "nombre_obra" => $_POST['nombreObra']
+           );
+          if($this->model->addObra($data)){
+           base_url();
+         }
+         header("index.php");
+
+       }
+
+function showUploadObra(){
+      $query = $this->model->obraList();
+      $data['data'] = $query;
+      $this->load->view('uploadObra',$data);
+    }
+
 function showFiles(){
   $obra = strtoupper( $_POST['obra']);
   $year = strtoupper( $_POST['year']);
@@ -289,6 +296,7 @@ function showEditWorker(){
   $data['resultado'] = $query->result();
   $this->load->view('editWorker',$data);
 }
+/*------*/
 function deleteWorker(){
   $rut = $this->input->post('rut');
   $this->model->deleteWorker($rut);
@@ -548,16 +556,14 @@ function showDet(){
           $data['dias']=$dias;
           $this->load->view('workerdetail', $data);
       }
-function passVer()
-    {
+function passVer(){
         $pass              = $this->input->post("passw");
         $user              = $this->session->userdata("userName");
         $ver               = $this->userPassV($pass, $user);
         $data['condition'] = $ver;
         echo json_encode($data);
     }
-function userPassV($pass, $user)
-    {
+function userPassV($pass, $user){
         $query = $this->model->queryUser($user);
         $ver   = false;
         $rpass = "";
@@ -569,7 +575,4 @@ function userPassV($pass, $user)
         }
         return $ver;
     }
-
-
-
 }

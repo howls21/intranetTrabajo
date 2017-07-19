@@ -4,6 +4,7 @@ $(document).ready(function() {
     });
      
 });
+/*Funcion menu principal*/
 function activated(num){
     $('#liworker').removeClass('activated');
     $('#liobra').removeClass('activated');
@@ -56,6 +57,7 @@ function activated(num){
         
     }
 }
+/*Mensaje emergente*/
 function messageModal() {
     dialog2 = $("#dialog").dialog({
         autoOpen: false,
@@ -70,6 +72,7 @@ function messageModal() {
         },
     });
 }
+/*------Validacion---------------------*/
 function numberValidation(event) {
     if ((event.keyCode < 48) || (event.keyCode > 57))
         event.returnValue = false;
@@ -83,6 +86,7 @@ function yearValidation() {
         $("#year").val("");
     }
 }
+/*--Valida Login--*/
 function login() {
     $.post(
         base_url + "controller/conection",
@@ -140,59 +144,7 @@ function killCookie() {
     $("#user").val("");
     $("#password").val("");
 }
-function loadFile() {
-    $.post(
-        base_url + "controller/loadFile",
-        {},
-        function (pagina, data) {
-            $("#container").html(pagina, data);
-        }
-        );
-}
-function searchFile() {
-    $.post(
-        base_url + "controller/searchFile",
-        {},
-        function (pagina, data) {
-            $("#container").html(pagina, data);
-        }
-        );
-}
-function addObra() {
-    $.post(
-        base_url + "controller/addObra",
-        {},
-        function (pagina, data) {
-            $("#container").html(pagina, data);
-        }
-        );
-}
-function saveObra() {
-    if ($("#nombreObra").val() == "") {
-        alert("Debe ingresar una obra!");
-    } else {
-        $.post(
-            base_url + "controller/saveObra",
-            {
-                nombreObra: $("#nombreObra").val()
-
-            },
-            function (data) {
-                if (data.message == "existe") {
-                    alert("La obra ya existe en el sistema!");
-                    $("#nombreObra").val("");
-                } else if (data.message == "error") {
-                    alert("Error al guardar!");
-                    $("#nombreObra").val("");
-                } else if (data.message == "correcto") {
-                    addObra();
-                    alert("Obra agregada correctamente!");
-                    $("#nombreObra").val("");
-                }
-            }, 'json'
-            );
-    }
-}
+/*--------------Mostrar---------*/
 function showUploadObra() {
     $.post(
         base_url + "controller/showUploadObra",
@@ -201,16 +153,6 @@ function showUploadObra() {
             $("#container").html(pagina, data);
         }
         );
-}
-function datePicker1() {
-    $("#datepicker").datepicker({
-        changeMonth: true,
-        changeYear: true,
-        minDate: '-80Y',
-        dateFormat: 'dd-mm-yy',
-        maxDate: "-18Y",
-        yearRange: "-80:+0"
-    });
 }
 function showFiles() {
     if ($("#nameObra").val() == "" || $("#year").val() == "" || $("#cat").val() == "") {
@@ -265,6 +207,195 @@ function showEditWorker() {
         }
         );
 }
+function showEditObra() {
+    $.post(
+        base_url + "controller/showEditObra",{},
+        function (pagina, data) {
+            $("#container").html(pagina, data);
+        }
+        );
+}
+function showEditCard(){
+    $.post(
+        base_url + "controller/showEditCard",
+        {},
+        function (pagina, data){ 
+            $("#container").html(pagina, data);
+        }
+    );
+}
+function showUploadWorker() {
+    $.post(
+        base_url + "controller/showUploadWorker",
+        {},
+        function (pagina, data, data2) {
+            $("#container").html(pagina, data);
+        }
+        );
+}
+function showSearchFileWorker() {
+    $.post(
+        base_url + "controller/showSearchFileWorker",
+        {},
+        function (pagina, data) {
+            $("#container").html(pagina, data);
+        }
+        );
+}
+function showCreateCard() {
+    $.post(
+        base_url + "controller/showCreateCard",
+        {},
+        function (pagina) {
+            $("#container").html(pagina);
+        }
+        );
+}
+function showSearchReg() {
+    activated(6);
+    $.post(
+        base_url + "controller/showSearchReg",
+        {},
+        function (pagina) {
+            $("#container").html(pagina);
+        }
+        );
+}
+function showDeleteCard(id){
+    $('#ModalDelCard').modal('show');
+    $('#cardid').val(id);
+}
+function showDWorker(r){
+    $('#ModalDelWorker').modal('show');
+    $('#wid').val(r);
+}
+function showDeleteObra(id){
+    $('#ModalDelObra').modal('show');
+    $('#oid').val(id);
+}
+function showDet(r){
+    rut = r;
+    obra = $("#slobra").val();
+    year = $("#slaño").val();
+    month = $("#slmes").val();
+    $.post(
+            base_url + "controller/showDet",
+            {
+              year:year ,
+              obra:obra,
+              month:month,
+              rut: rut
+            },
+            function (pagina) {
+            $('#ModalWorkerD').modal('show');    
+            $("#wdetailc").html(pagina);
+            }
+    );
+}
+function datePicker1() {
+    $("#datepicker").datepicker({
+        changeMonth: true,
+        changeYear: true,
+        minDate: '-80Y',
+        dateFormat: 'dd-mm-yy',
+        maxDate: "-18Y",
+        yearRange: "-80:+0"
+    });
+}
+/*-----------Carga de archivos-------*/
+function loadFile() {
+    $.post(
+        base_url + "controller/loadFile",
+        {},
+        function (pagina, data) {
+            $("#container").html(pagina, data);
+        }
+        );
+}
+function searchFile() {
+    $.post(
+        base_url + "controller/searchFile",
+        {},
+        function (pagina, data) {
+            $("#container").html(pagina, data);
+        }
+        );
+}
+function searchState() {
+    $.post(
+        base_url + "controller/searchState",
+        {
+            worker: $("#worker").val(),
+            obra: $("#obra").val()
+        },
+        function (data) {
+            if (data.condition == false) {
+                document.getElementById('workerState').style.display = 'block';
+            }
+        }, 'json'
+        );
+}
+/*--------------Añadir--------------*/
+function addObra() {
+    $.post(
+        base_url + "controller/addObra",
+        {},
+        function (pagina, data) {
+            $("#container").html(pagina, data);
+        }
+        );
+}
+function saveObra() {
+    if ($("#nombreObra").val() == "") {
+        alert("Debe ingresar una obra!");
+    } else {
+        $.post(
+            base_url + "controller/saveObra",
+            {
+                nombreObra: $("#nombreObra").val()
+
+            },
+            function (data) {
+                if (data.message == "existe") {
+                    alert("La obra ya existe en el sistema!");
+                    $("#nombreObra").val("");
+                } else if (data.message == "error") {
+                    alert("Error al guardar!");
+                    $("#nombreObra").val("");
+                } else if (data.message == "correcto") {
+                    addObra();
+                    alert("Obra agregada correctamente!");
+                    $("#nombreObra").val("");
+                }
+            }, 'json'
+            );
+    }
+}
+function saveCard(){
+    if($("#slCC").val() !== "" && $("#idCC").val() !== "" && $("#idobra").val() !== ""){
+        $.post(
+            base_url + "controller/saveCard",
+            {
+                rut:$("#slCC").val(),
+                id:$("#idCC").val(),
+                obra:$("#idobra").val()
+            },
+            function (data) {
+                if(data.condition){
+                    alert("Agregada correctamente!");
+                    $("#slCC").val("");
+                    $("#idCC").val("");
+                    $("#idobra").val("");
+                }else{
+                    alert("Error!");
+                }
+
+            }, 'json'
+            );}else{
+            alert("¡Ingrese los campos requeridos!");
+        }
+    }
+/*--------------Editar--------------*/
 function editWorkerRut(modal){
     $.post(
         base_url + "controller/editWorkerRut",{
@@ -310,33 +441,43 @@ function editObraId(id,modal){
     alert("¡Ingrese los campos requeridos!");
 }
 }
-function showEditObra() {
-    $.post(
-        base_url + "controller/showEditObra",{},
-        function (pagina, data) {
-            $("#container").html(pagina, data);
-        }
-        );
+/*-----------Eliminar-----------------*/
+function deleteCard(){
+    opt = passCheck2();
+    if (opt) {
+    id = $("#cardid").val();
+    $.post(base_url + "controller/deleteCard",{id_tarjeta: id},
+          function(){
+        $('#ModalDelCard').modal('toggle');
+        setTimeout("showEditCard();", 1000);
+        
+    });
+    }
 }
-function showEditCard(){
-    $.post(
-        base_url + "controller/showEditCard",
-        {},
-        function (pagina, data){ 
-            $("#container").html(pagina, data);
-        }
-    );
+function deleteWorker(){
+    rut = $("#wid").val();
+    cond = passCheck2();
+    if (cond) {
+  $.post(base_url + "controller/deleteWorker",{rut : rut},
+          function (){
+          $('#ModalDelWorker').modal('toggle');
+        setTimeout("showEditWorker();", 1000);
+    });
+  }
 }
-
-function showUploadWorker() {
+function deleteObra(){
+    id = $("#oid").val();
+    cond = passCheck2();
+    if (cond) {
     $.post(
-        base_url + "controller/showUploadWorker",
-        {},
-        function (pagina, data, data2) {
-            $("#container").html(pagina, data);
-        }
-        );
+        base_url + "controller/deleteObra",{id_obra : id},
+        function(){
+            $('#ModalDelObra').modal('toggle');
+            setTimeout("showEditObra();", 1000);
+        });
 }
+}
+/*Valida Campos*/
 function rutValidation() {
     if ((event.keyCode == 107)) {
         event.returnValue = true;
@@ -345,121 +486,6 @@ function rutValidation() {
             event.returnValue = false;
     }
 }
-
-function searchState() {
-    $.post(
-        base_url + "controller/searchState",
-        {
-            worker: $("#worker").val(),
-            obra: $("#obra").val()
-        },
-        function (data) {
-            if (data.condition == false) {
-                document.getElementById('workerState').style.display = 'block';
-            }
-        }, 'json'
-        );
-}
-function showSearchFileWorker() {
-    $.post(
-        base_url + "controller/showSearchFileWorker",
-        {},
-        function (pagina, data) {
-            $("#container").html(pagina, data);
-        }
-        );
-}
-function showCreateCard() {
-    $.post(
-        base_url + "controller/showCreateCard",
-        {},
-        function (pagina) {
-            $("#container").html(pagina);
-        }
-        );
-}
-function showSearchReg() {
-    activated(6);
-    $.post(
-        base_url + "controller/showSearchReg",
-        {},
-        function (pagina) {
-            $("#container").html(pagina);
-        }
-        );
-}
-function saveCard(){
-    if($("#slCC").val() !== "" && $("#idCC").val() !== "" && $("#idobra").val() !== ""){
-        $.post(
-            base_url + "controller/saveCard",
-            {
-                rut:$("#slCC").val(),
-                id:$("#idCC").val(),
-                obra:$("#idobra").val()
-            },
-            function (data) {
-                if(data.condition){
-                    alert("Agregada correctamente!");
-                    $("#slCC").val("");
-                    $("#idCC").val("");
-                    $("#idobra").val("");
-                }else{
-                    alert("Error!");
-                }
-
-            }, 'json'
-            );}else{
-            alert("¡Ingrese los campos requeridos!");
-        }
-    }
-    function loadMonths(){
-        year = $("#slaño").val();
-        $.post(
-            base_url + "controller/loadMonths",
-            {
-              year:year
-          },
-          function (pagina) {
-            $("#meses").html(pagina);
-        }
-        );
-    }
-    function loadAS(){
-        obra = $("#slobra").val();
-        year = $("#slaño").val();
-        month = $("#slmes").val();
-        $.post(
-            base_url + "controller/loadAS",
-            {
-              year:year ,
-              obra:obra,
-              month:month
-          },
-          function (pagina) {
-            $("#aCont").html(pagina);
-        }
-        );
-    }
-    function showDet(r){
-    rut = r;
-    obra = $("#slobra").val();
-    year = $("#slaño").val();
-    month = $("#slmes").val();
-    $.post(
-            base_url + "controller/showDet",
-            {
-              year:year ,
-              obra:obra,
-              month:month,
-              rut: rut
-            },
-            function (pagina) {
-            $('#ModalWorkerD').modal('show');    
-            $("#wdetailc").html(pagina);
-            }
-    );
-}
-
 function soloLetras(e){
        key = e.keyCode || e.which;
        tecla = String.fromCharCode(key).toLowerCase();
@@ -507,10 +533,34 @@ function formWVal(){
         alert("¡Ingrese todos los campos!");
     }
 }
-function showDeleteCard(id){
-    $('#ModalDelCard').modal('show');
-    $('#cardid').val(id);
-}
+function loadMonths(){
+        year = $("#slaño").val();
+        $.post(
+            base_url + "controller/loadMonths",
+            {
+              year:year
+          },
+          function (pagina) {
+            $("#meses").html(pagina);
+        }
+        );
+    }
+function loadAS(){
+        obra = $("#slobra").val();
+        year = $("#slaño").val();
+        month = $("#slmes").val();
+        $.post(
+            base_url + "controller/loadAS",
+            {
+              year:year ,
+              obra:obra,
+              month:month
+          },
+          function (pagina) {
+            $("#aCont").html(pagina);
+        }
+        );
+    }
 function passVer2(e){
     var pass = e;
     $.post(base_url + "controller/passVer", {
@@ -544,47 +594,4 @@ function passCheck2(){
         passVer2();
         return false;
     }
-}
-function deleteCard(){
-    opt = passCheck2();
-    if (opt) {
-    id = $("#cardid").val();
-    $.post(base_url + "controller/deleteCard",{id_tarjeta: id},
-          function(){
-        $('#ModalDelCard').modal('toggle');
-        setTimeout("showEditCard();", 1000);
-        
-    });
-    }
-}
-function showDWorker(r){
-    $('#ModalDelWorker').modal('show');
-    $('#wid').val(r);
-}
-function deleteWorker(){
-    rut = $("#wid").val();
-    cond = passCheck2();
-    if (cond) {
-  $.post(base_url + "controller/deleteWorker",{rut : rut},
-          function (){
-          $('#ModalDelWorker').modal('toggle');
-        setTimeout("showEditWorker();", 1000);
-    });
-  }
-}
-function showDeleteObra(id){
-    $('#ModalDelObra').modal('show');
-    $('#oid').val(id);
-}
-function deleteObra(){
-    id = $("#oid").val();
-    cond = passCheck2();
-    if (cond) {
-    $.post(
-        base_url + "controller/deleteObra",{id_obra : id},
-        function(){
-            $('#ModalDelObra').modal('toggle');
-            setTimeout("showEditObra();", 1000);
-        });
-}
 }
