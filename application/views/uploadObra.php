@@ -61,7 +61,7 @@
 <div class="form-group">
          <label class="col-md-4 control-label"></label>
          <div class="col-md-4">
-             <input type="submit" value="Subir archivo" class="btn btn-default col-md-offset-6" onclick="formVal()" /> 
+             <input type="submit" value="Subir archivo" class="btn btn-default col-md-offset-6" onclick="formVal(2)" /> 
          </div>
     </div>
 </div>

@@ -164,3 +164,18 @@ body{
 #ecspanE, #ecspanS, #ecspanE2, #ecspanS2 {
     display: none;
 }
+#tobrasc{
+    max-height: 400px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+#tworkerc{
+    max-height: 400px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+#tobrac{
+    max-height: 400px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}

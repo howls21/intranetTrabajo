@@ -273,30 +273,42 @@ function editWorkerRut(modal){
         });
 }
 function editWorkerUpdate(modal){
+    wName = $("#inNameWorker"+modal).val();
+    wLName1 = $("#inApellidoPaterno"+modal).val();
+    wLName2 = $("#inApellidoMaterno"+modal).val();
+    if (wName != "" && wLName1 != "" && wLName2 != "") {
     $.post(
         base_url + "controller/editWorkerUpdate",{
             rut : $("#inRutWorker"+modal).val(),
-            nombre : $("#inNameWorker"+modal).val(),
-            apellido_paterno : $("#inApellidoPaterno"+modal).val(),
-            apellido_materno : $("#inApellidoMaterno"+modal).val()
+            nombre : wName,
+            apellido_paterno : wLName1,
+            apellido_materno : wLName2
         },function(){
             $("#editWorkerModal"+modal).modal("toggle");
             setTimeout("showEditWorker();", 1000);
             
         });
+}else{
+    alert("¡Ingrese los campos requeridos!");
+}
 }
 function editObra(modal){
     $("#editObraModal"+modal).modal("show");
 }
 function editObraId(id,modal){
+    nameO = $("#inNameObra"+modal).val();
+    if (nameO != "") {
     $.post(
         base_url + "controller/editObraId",{
             id_obra : id,
-            nombre_obra : $("#inNameObra"+modal).val()
+            nombre_obra : nameO
         },function(){
             $("#editObraModal"+modal).modal("toggle");
             setTimeout("showEditObra();", 1000);
         });
+}else{
+    alert("¡Ingrese los campos requeridos!");
+}
 }
 function showEditObra() {
     $.post(
@@ -306,15 +318,6 @@ function showEditObra() {
         }
         );
 }
-
-function deleteObra(id_obra){
-    $.post(
-        base_url + "controller/deleteObra",{id_obra : id_obra},
-        function(){
-            showEditObra();
-        });
-}
-
 function showEditCard(){
     $.post(
         base_url + "controller/showEditCard",
@@ -481,11 +484,20 @@ function soloNumeros(e) {
     }else{
     return (key >= 48 && key <= 57)}
 }
-function formVal(){
+function formVal(num){
+    n = num;
+    if (n == 1) {
+        if ($("#obra").val()!="" && $("#worker").val()!="" && $("#filesToUpload").val()!="" ) {
+        document.formuw.submit();
+        }else{
+        alert("¡Ingrese todos los campos!");
+        }   
+    }else if (n == 2) {
     if ($("#fObra").val()!="" && $("#fCat").val()!="" && $("#fyear").val()!="" && $("#fMonth").val()!="" && $("#farchivo").val()!="") {
         document.formObra.submit();
     }else{
         alert("¡Ingrese todos los campos!");
+    }
     }
 }
 function formWVal(){
@@ -559,4 +571,20 @@ function deleteWorker(){
         setTimeout("showEditWorker();", 1000);
     });
   }
+}
+function showDeleteObra(id){
+    $('#ModalDelObra').modal('show');
+    $('#oid').val(id);
+}
+function deleteObra(){
+    id = $("#oid").val();
+    cond = passCheck2();
+    if (cond) {
+    $.post(
+        base_url + "controller/deleteObra",{id_obra : id},
+        function(){
+            $('#ModalDelObra').modal('toggle');
+            setTimeout("showEditObra();", 1000);
+        });
+}
 }

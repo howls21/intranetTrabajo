@@ -6,7 +6,7 @@
          <p>No hay Obras Almacenadas!</p>
        <?php else: ?>
          <h2>Lista de Obras</h2><br>
-         <div class="table-responsive">
+         <div class="table-responsive" id="tobrac">
            <table class="table" id="tableObras">
              <th>Nombre</th>
              <?php $i = 0; foreach ($resultado as $fila):?>
@@ -38,7 +38,7 @@
                 </div>
               </td>
               <td>
-               <button id="eliminar<?php echo $i ?>" onclick="deleteObra(<?php echo $fila->id_obra ?>)" class="btn btn-sm btn-danger">
+               <button id="eliminar<?php echo $i ?>" onclick="showDeleteObra(<?php echo $fila->id_obra ?>)" class="btn btn-sm btn-danger">
                  <span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
                </td>
              </tr>
@@ -48,3 +48,35 @@
        <?php endif; ?>
      </div>
      <input type="hidden" id="oculto" value="<php echo $i ?>"/>
+<div class="modal fade" tabindex="-1" role="dialog" id="ModalDelObra">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">Eliminar Obra</h4>
+        </div>
+        <div class="modal-body">
+          <div class="form-horizontal">
+            <p class="passTl">Para confirmar Ingrese su contraseña!</p>
+          <div class="form-group" id="passCont">
+            <label class="col-sm-4 control-label">Contraseña</label>
+            <div class="col-sm-8" id="ecErrorP2">
+                <input type="password" class="form-control" id="mepPass2" onblur="passVer2(this.value)">
+                <input type="hidden" id="ecpass2" value="" disabled="true">
+                <span id="ecspanE2" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+              <span id="inputError2Status" class="sr-only">(error)</span>
+              <span id="ecspanS2" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+              <span id="inputSuccess2Status" class="sr-only">(success)</span>
+            </div>
+          </div>
+          <input type="hidden" id="oid" value="" disabled="true">
+        </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-primary" onclick="deleteObra()">Eliminar</button>
+        </div>
+      </div>
+    </div>
+    </div>

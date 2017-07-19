@@ -47,19 +47,12 @@
                 <input type="file" name="filesToUpload[]" id="filesToUpload" class="form-control col-md-offset-4" multiple=""/> 
             </div>
         </div>
-        <div class="form-group">
+   </form>
+   <div class="form-group">
             <label class="col-md-4 control-label"></label>
             <div class="col-md-4">
-                <input type="submit" value="Subir archivo" class="btn btn-default col-md-offset-6"/> 
+                <input type="submit" value="Subir Archivo" class="btn btn-default col-md-offset-6" onclick="formVal(1)" /> 
             </div>
-        </div>
-        <script>
-        function formVal(){
-    
-    
-}
-        </script>
-
-    </form>
+    </div>
 </div>
 

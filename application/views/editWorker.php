@@ -3,7 +3,7 @@
      <p>No hay Trabajadores Almacenados!</p>
    <?php else: ?>
      <h2>Lista de Trabajadores</h2><br>
-     <div class="table-responsive">
+     <div class="table-responsive" id="tworkerc">
        <table class="table" id="tableWorkers">
          <th>Rut</th>
          <th>Nombre</th>

@@ -4,19 +4,20 @@
         <div class="form-group">
             <label class="col-md-4 control-label">Nombre</label>
             <div class="col-md-5">
-                <input type="text" id="workerName" name="workerName" class="form-control" placeholder="Nombre.." maxlength="30">
+                <input type="text" id="workerName" name="workerName" class="form-control" placeholder="Nombre.." maxlength="20" onkeypress="return soloLetras(event)">
             </div>
         </div>
         <div class="form-group">
             <label class="col-md-4 control-label">Apellido Paterno</label>
             <div class="col-md-5">
-                <input type="text" id="wLastname1" name="workerLastname1" class="form-control" placeholder="Apellido Paterno.." maxlength="15">
+                <input type="text" id="wLastname1" name="workerLastname1" class="form-control" placeholder="Apellido Paterno.." maxlength="15" onkeypress="return soloLetras(event)">
             </div>
         </div>
         <div class="form-group">
             <label class="col-md-4 control-label">Apellido Materno</label>
             <div class="col-md-5">
-                <input type="text" id="wLastname2" name="workerLastname2" class="form-control" placeholder="Apellido Materno.." maxlength="15">
+                <input type="text" id="wLastname2" name="workerLastname2" class="form-control" placeholder="Apellido Materno.." maxlength="15"
+                onkeypress="return soloLetras(event)">
             </div>
         </div>
         <div class="form-group">

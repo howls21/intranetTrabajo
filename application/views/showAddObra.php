@@ -18,6 +18,7 @@
         </div>
     </div>
     <div class="col-md-offset-4 col-md-5">
+        <div id="tobrasc">
         <table id="table-obra" class="table table-bordered">
             <tr><th class="table">Obras</th></tr>
             <?php
@@ -28,6 +29,7 @@
     <?php }
 } ?></tr>
         </table>
+        </div>
     </div>
     </div>
 </div>
